@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'home_banner.dart';
 import '../services/product.dart';
 import '../model/product.dart';
+import 'home_product_page.dart';
+
+
 class HomePage extends StatefulWidget{
   @override
-  _HomePageState createState() {
-    return _HomePageState();
-  }
-
+  HomePageState createState() => HomePageState();
 }
-class _HomePageState extends State<HomePage>{
-  ProductListModel listData = ProductListModel([]);
-  //当前选择页面索引
-  @override
-  void initState() {
-    super.initState();
-    getProductList();
-  }
-  void getProductList()  async{
+
+class HomePageState extends State<HomePage>{
+
+  ProductListModal listData = ProductListModal([]);
+
+  void getProductList() async{
     var data = await getProductResult();
-    ProductListModel list = ProductListModel.fromJson(data);
+    ProductListModal list = ProductListModal.fromJson(data);
+
     setState(() {
       listData.data.addAll(list.data);
     });
+
   }
 
+  @override
+  void initState(){
+    getProductList();
+    super.initState();
+  }
 
 
   @override
@@ -34,12 +37,8 @@ class _HomePageState extends State<HomePage>{
       body: ListView(
         children: <Widget>[
           BannerWidget(),
-          RaisedButton(
-            child: Text('获取产品数据'),
-            onPressed: (){
-              getProductResult();
-            },
-          )
+          HomeProductPage(listData),
+
         ],
       ),
     );

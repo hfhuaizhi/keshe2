@@ -1,22 +1,61 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+import 'about_contact_page.dart';
+
+
 class AboutUsPage extends StatefulWidget{
   @override
-  _AboutUsPageState createState() {
-    return _AboutUsPageState();
-  }
-
+  AboutUsPageState createState() => AboutUsPageState();
 }
-class _AboutUsPageState extends State<AboutUsPage>{
-  //当前选择页面索引
-  @override
-  void initState() {
-    super.initState();
-  }
+
+class AboutUsPageState extends State<AboutUsPage>{
+
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Text("aboutus")
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              'assets/images/company.jpg',
+              fit: BoxFit.cover,
+            ),
+            ListTile(
+              leading: Icon(Icons.message),
+              title: Text('公司介绍'),
+              onTap: (){
+                Navigator.of(context).pushReplacementNamed('company_info');
+              },
+            ),
+            Divider(
+              height: 10.0,
+              color: Colors.grey,
+            ),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text('公司优势'),
+            ),
+            Divider(
+              height: 10.0,
+              color: Colors.grey,
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: Text('联系我们'),
+              onTap: (){
+                Navigator.push(context,MaterialPageRoute(builder: (context) => AboutContactPage()));
+              },
+            ),
+            Divider(
+              height: 10.0,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+      ),
     );
   }
 
