@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'utils/SpUtil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'conf/GlobalValue.dart';
 
 class LoadingPage extends StatefulWidget{
   @override
@@ -14,13 +15,14 @@ class _LoadingState extends State<LoadingPage>{
   void initState(){
     super.initState();
     //在加载页面停顿3秒
-    setString('username', 'hfhuaizhi');
     Future.delayed(Duration(seconds: 3),(){
-
-      Navigator.of(context).pushReplacementNamed("app");
-      Future<String> username =  getString('username');
+      Future<String> username =  getString(GlobalValue.USERNAME);
       username.then((String tmp){
-        print(tmp);
+        if(tmp!=null&&tmp.length>1){
+          _gotoMainPager(context);
+        }else{
+          _godoLogin(context);
+        }
       });
 
     });
@@ -55,4 +57,12 @@ class _LoadingState extends State<LoadingPage>{
     
   }
   
+}
+
+void _godoLogin(BuildContext context) {
+  Navigator.of(context).pushReplacementNamed("login");
+}
+
+void _gotoMainPager(BuildContext context) {
+  Navigator.of(context).pushReplacementNamed("app");
 }
