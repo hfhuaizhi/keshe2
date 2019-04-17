@@ -5,7 +5,7 @@ import '../conf/configure.dart';
 //获取新闻数据
 getNewsResult() async {
 
-  String url = 'http://' + Config.IP + ':' + Config.PORT + '/?action=getNews';
+  String url = Config.SERVER_ADDRESS + '/?action=getNews';
 
   var res = await http.get(url);
   String body = res.body;

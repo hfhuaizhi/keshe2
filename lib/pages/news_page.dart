@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import '../model/news.dart';
 import '../services/news.dart';
 import 'news_detail_page.dart';
+import 'package:http/http.dart' as http;
+import 'package:keshe2/conf/configure.dart';
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:keshe2/model/student.dart';
 
 //新闻页面
 class NewsPage extends StatefulWidget {
@@ -10,21 +15,25 @@ class NewsPage extends StatefulWidget {
 }
 
 class NewsPageState extends State<NewsPage> {
-  NewsListModal listData = NewsListModal([]);
+  List<Student> listData = List<Student>();
 
   //获取新闻列表数据
-  void getNewsList() async {
-    var data = await getNewsResult();
-    NewsListModal list = NewsListModal.fromJson(data);
+  void getStudentList() async {
+    var data = await http.get(Config.SERVER_GETSTUDENT);
+    if(data.body!=null){
+      List<Student> list = json.decode(data.body);
+      listData.addAll(list);
+      setState(() {
 
-    setState(() {
-      listData.data.addAll(list.data);
-    });
+      });
+    }else{
+      Fluttertoast.showToast(msg: "获取学生列表失败");
+    }
   }
 
   @override
   void initState() {
-    getNewsList();
+    getStudentList();
     super.initState();
   }
 
@@ -40,16 +49,16 @@ class NewsPageState extends State<NewsPage> {
               height: 1.0,
               color: Colors.grey,
             ),
-        itemCount: listData.data.length,
+        itemCount: listData.length,
         //列表项构建器
         itemBuilder: (BuildContext contex, int index) {
 
           //新闻列表项数据
-          NewsItemModal item = listData.data[index];
+          Student item = listData[index];
 
           return ListTile(
-            title: Text(item.title),
-            subtitle: Text(item.content),
+            title: Text(item.name),
+            subtitle: Text(item.clazz),
             leading: Icon(Icons.fiber_new),
             trailing: Icon(Icons.arrow_forward),
             contentPadding: EdgeInsets.all(10.0),
@@ -59,7 +68,8 @@ class NewsPageState extends State<NewsPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => NewsDetailPage(item: item)),
+                  //  builder: (context) => NewsDetailPage(item: item)),
+                ),
               );
             },
           );

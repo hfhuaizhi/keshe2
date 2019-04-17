@@ -22,7 +22,7 @@ class _LoginState extends State<Login>{
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(vertical: 66.0, horizontal: 24.0),
         child: Form(
           key: _formKey, //设置globalKey，用于后面获取FormState
           autovalidate: true, //开启自动校验
@@ -70,7 +70,7 @@ class _LoginState extends State<Login>{
                     Expanded(
                       child: RaisedButton(
                         padding: EdgeInsets.all(15.0),
-                        child: Text("登录"),
+                        child: Text("用户登录"),
                         color: Theme
                             .of(context)
                             .primaryColor,
@@ -91,6 +91,17 @@ class _LoginState extends State<Login>{
                         },
                       ),
                     ),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                    ),
+                    Expanded(child: RaisedButton(onPressed: (){
+                      _doRegist();
+                    },
+                    textColor: Colors.white,
+                      color: Theme.of(context).primaryColor,
+                      child: Text("用户注册"),
+                      padding: EdgeInsets.all(15.0),
+                    ))
                   ],
                 ),
               )
@@ -110,8 +121,16 @@ class _LoginState extends State<Login>{
       setString(GlobalValue.USERNAME, username);
       Navigator.pushNamed(context, "app");
     }else{
-    Fluttertoast.showToast(msg: "登录失败"+body);
+      Fluttertoast.showToast(msg: "登录失败"+body);
+    //todo 暂行进入主界面
+      Navigator.pushNamed(context, "app");
+
     }
   }
+
+  void _doRegist() {
+    Navigator.pushNamed(context, "regist");
+  }
 }
+
 

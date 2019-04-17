@@ -3,6 +3,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'loading.dart';
 import 'app.dart';
 import 'login.dart';
+import 'regist.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
@@ -13,6 +14,7 @@ void main() => runApp(MaterialApp(
   routes: <String,WidgetBuilder>{
     "app": (BuildContext context) => App(),
     "login": (BuildContext context) => Login(),
+    "regist": (BuildContext context) => Regist(),
     "company_info":(BuildContext context) => WebviewScaffold(
       url: "https://www.baidu.com",
       appBar: AppBar(

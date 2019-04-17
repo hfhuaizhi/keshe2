@@ -53,7 +53,7 @@ class AppState extends State<App> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter企业站实战'),
+        title: Text('Flutterkeshe'),
         leading: Icon(Icons.home),
         actions: <Widget>[
           //右侧内边距
@@ -91,7 +91,7 @@ class AppState extends State<App> {
             ),
             BottomNavigationBarItem(
               title: Text(
-                '产品',
+                '学生管理',
               ),
               icon: Icon(Icons.apps),
             ),
