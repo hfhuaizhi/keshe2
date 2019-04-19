@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import '../model/news.dart';
+import '../model/student.dart';
 
 
 
-class NewsDetailPage extends StatelessWidget{
-  final NewsItemModal item;
+class StudentsDetailPage extends StatelessWidget{
+  final Student item;
 
-  NewsDetailPage({Key key,@required this.item}) : super(key:key);
+  StudentsDetailPage({Key key,@required this.item}) : super(key:key);
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(item.title),
+        title: Text(item.name),
       ),
       body:  Padding(
         padding: EdgeInsets.all(16.0),
-        child: Text(item.content),
+        child: Text(item.clazz),
       ),
     );
 

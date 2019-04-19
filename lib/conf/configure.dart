@@ -10,4 +10,6 @@ class Config{
 
   static const String SERVER_REGIST = SERVER_ADDRESS+"/regist";
 
+  static const String SERVER_SEARCHSTU = SERVER_ADDRESS+"/searchstu";
+
 }

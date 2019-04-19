@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'pages/about_us_page.dart';
 import 'pages/home_page.dart';
-import 'pages/news_page.dart';
+import 'pages/students_page.dart';
 import 'pages/product_page.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
+import 'pages/search_page.dart';
 class App extends StatefulWidget {
   @override
   AppState createState() => AppState();
@@ -60,7 +61,12 @@ class AppState extends State<App> {
           Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Fluttertoast.showToast(msg: "当前页面$_currentIndex");
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return SearchPage();
+                }));
+              },
               child: Icon(
                 Icons.search,
               ),
@@ -97,7 +103,7 @@ class AppState extends State<App> {
             ),
             BottomNavigationBarItem(
               title: Text(
-                '新闻',
+                '学生管理',
               ),
               icon: Icon(Icons.fiber_new),
             ),

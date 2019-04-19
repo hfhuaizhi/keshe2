@@ -15,19 +15,6 @@ void main() => runApp(MaterialApp(
     "app": (BuildContext context) => App(),
     "login": (BuildContext context) => Login(),
     "regist": (BuildContext context) => Regist(),
-    "company_info":(BuildContext context) => WebviewScaffold(
-      url: "https://www.baidu.com",
-      appBar: AppBar(
-        title: Text('公司介绍'),
-        leading: IconButton(
-            icon: Icon(Icons.home),
-            onPressed: (){
-              //路由到主界面
-              Navigator.of(context).pushReplacementNamed('app');
-            },
-        ),
-      ),
-    ),
   },
   //指定加载页面
   home: LoadingPage(),

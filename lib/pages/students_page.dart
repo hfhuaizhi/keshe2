@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/news.dart';
 import '../services/news.dart';
-import 'news_detail_page.dart';
+import 'students_detail_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:keshe2/conf/configure.dart';
 import 'dart:convert';
@@ -69,6 +69,7 @@ class NewsPageState extends State<NewsPage> {
                 context,
                 MaterialPageRoute(
                   //  builder: (context) => NewsDetailPage(item: item)),
+                    builder: (context) => StudentsDetailPage(item: item)
                 ),
               );
             },

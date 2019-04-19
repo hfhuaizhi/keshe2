@@ -87,6 +87,8 @@ class _LoginState extends State<Login>{
                             String password = _pwdController.text;
                             _doLogin(username,password);
                             //验证通过提交数据
+                          }else{
+                            Fluttertoast.showToast(msg: "填写内容还有不规范的哦");
                           }
                         },
                       ),
@@ -115,6 +117,8 @@ class _LoginState extends State<Login>{
     Fluttertoast.showToast(msg: "dologin");
     var res = await http.get(Config.SERVER_LOGIN+"?username="+username+"&password="+password);
     String body = res.body;
+    Navigator.pushNamed(context, "app");
+    return;
     if(body!=null&&body.contains("success")){
       Fluttertoast.showToast(msg: "登录成功"+body);
 

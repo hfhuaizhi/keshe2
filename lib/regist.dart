@@ -103,7 +103,12 @@ class _RegistState extends State<Regist>{
                 child: Row(
                   children: <Widget>[
                     Expanded(child: RaisedButton(onPressed: (){
-                      _doRegist();
+                      if((_formKey.currentState as FormState).validate()){
+                        _doRegist();
+                        //验证通过提交数据
+                      }else{
+                        Fluttertoast.showToast(msg: "填写内容还有不规范的哦");
+                      }
                     },
                       textColor: Colors.white,
                       color: Theme.of(context).primaryColor,
@@ -125,6 +130,7 @@ class _RegistState extends State<Regist>{
     String realname = _realNameController.text;
     var res = await http.get(Config.SERVER_REGIST+"?username=$username&password=$password&realname=$realname");
     String body = res.body;
+    body = "fail";
     if(body!=null&&body.contains("success")){
       showDialog<Null>(
         context: context,
@@ -154,8 +160,9 @@ class _RegistState extends State<Regist>{
             title: new Text('注册失败'),
             actions: <Widget>[
               new FlatButton(
-                child: new Text(body),
+                child: new Text("确认"),
                 onPressed: () {
+                  Navigator.of(context).pop();
                 },
               ),
             ],

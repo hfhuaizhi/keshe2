@@ -22,13 +22,8 @@ class AboutContactPageState extends State<AboutContactPage>{
       print(info);
     }
   }
-
-
-
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: AppBar(
         title: Text('给我留言'),
