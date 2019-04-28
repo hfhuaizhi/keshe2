@@ -1,0 +1,50 @@
+建表
+---------------
+student
+s_id int key notnull
+s_username varchar20 notnull
+s_password varchar20 notnull
+s_realname varchar10 notnull
+s_class varchar20 notnull //年级
+p_id int fkey
+----
+----
+teacher
+t_id int key notnull
+t_username varchar20 notnull
+t_password varchar20 notnull
+t_realname varchar10 notnull
+t_college varchar20 notnull 
+----
+----
+classtask
+ct_id int key notnull
+ct_name varchar20 notnull
+ct_content varchar100 notnull
+ct_time_start varchar20 notnull
+ct_time_end varchar20 notnull
+c_id int fkey notnull //外键,课程与作业关系为一对多 
+----
+----
+course//课程
+c_id int key notnull
+c_name varchar15 notnull
+c_time_start varchar20 notnull
+c_time_end varchar20 notnull
+----
+----
+parent
+p_id int key
+p_username varchar20
+p_password varchar20
+p_name varchar20
+----
+----
+attendance//考勤表
+a_id int key
+a_name varchar20
+a_time varchar20
+
+
+
+

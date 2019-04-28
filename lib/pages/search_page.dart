@@ -3,6 +3,9 @@ import 'package:keshe2/model/student.dart';
 import 'package:keshe2/pages/students_detail_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:keshe2/conf/configure.dart';
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
+
 class SearchPage extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -64,7 +67,15 @@ class _SearchState extends State<SearchPage>{
     );
   }
   void _SeatchStudentList(String v) async{
-    var res = http.get(Config.SERVER_SEARCHSTU+"?stu=$v");
+    var res = await http.get(Config.SERVER_SEARCHSTU+"?stu=$v");
+    if(res.body!=null){
+      listData.clear();
+      List<Student> list = json.decode(res.body);
+      listData.addAll(list);
+      setState(() {
+
+      });
+    }
 
   }
 }

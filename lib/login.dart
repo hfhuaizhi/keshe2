@@ -134,6 +134,7 @@ class _LoginState extends State<Login>{
 
   void _doRegist() {
     Navigator.pushNamed(context, "regist");
+
   }
 }
 

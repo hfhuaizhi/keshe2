@@ -1,0 +1,59 @@
+/login
+req:username password
+res:success/error
+-----
+/regist
+req: username password realname
+res:success/error
+-----
+/getstu
+req:
+res:[student,student]
+-----
+/searchstu
+req: stu
+res:[student,student]
+-----
+/updatestu
+req: id username password realname class
+res:success/error
+/addstu
+req:username password realname class
+res:success/error
+-----
+/deletestu
+req:id
+res:success/error
+-----
+/getclasstask
+req:
+res:[classtask,classtask]
+-----
+/searchclasstask
+req:id
+res:[classtask,classtask]
+-----
+
+----------------
+----------------
+Student{
+	id
+	username
+	password
+	realname
+	clazz
+}
+Teacher{
+	id
+username
+password
+realname
+}
+Classtask{
+	id
+	name
+	content
+	stuname
+}
+
+

@@ -6,7 +6,7 @@ class Config{
   static const String SERVER_ADDRESS = "http://www.baidu.com";
   static const String SERVER_LOGIN = SERVER_ADDRESS+"/login";
 
-  static const String SERVER_GETSTUDENT = SERVER_ADDRESS+"/getstudent";
+  static const String SERVER_GETSTUDENT = SERVER_ADDRESS+"/getstu";
 
   static const String SERVER_REGIST = SERVER_ADDRESS+"/regist";
 
