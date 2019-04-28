@@ -21,16 +21,24 @@ classtask
 ct_id int key notnull
 ct_name varchar20 notnull
 ct_content varchar100 notnull
-ct_time_start varchar20 notnull
-ct_time_end varchar20 notnull
-c_id int fkey notnull //外键,课程与作业关系为一对多 
+//ct_time_start varchar20 notnull
+//ct_time_end varchar20 notnull
+c_id int fkey notnull //外键,课程与作业关系为一对多
 ----
 ----
-course//课程
+doclasstask//做作业
+dc_id int key notnull
+s_id int key notnull
+state int
+----
+----
+course//课堂
 c_id int key notnull
 c_name varchar15 notnull
-c_time_start varchar20 notnull
-c_time_end varchar20 notnull
+//c_time_start varchar20 notnull
+//c_time_end varchar20 notnull
+c_time varchar20 notnull
+
 ----
 ----
 parent
@@ -42,8 +50,18 @@ p_name varchar20
 ----
 attendance//考勤表
 a_id int key
-a_name varchar20
-a_time varchar20
+c_id
+s_id
+state defaultval:0
+
+----
+----
+comment//老师对学生的评语
+co_id
+s_id
+t_id
+co_content
+co_time
 
 
 

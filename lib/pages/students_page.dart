@@ -9,19 +9,28 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:keshe2/model/student.dart';
 
 //新闻页面
-class NewsPage extends StatefulWidget {
+class StudentPage extends StatefulWidget {
   @override
-  NewsPageState createState() => NewsPageState();
+  StudentPageState createState() => StudentPageState();
 }
 
-class NewsPageState extends State<NewsPage> {
+class StudentPageState extends State<StudentPage> {
   List<Student> listData = List<Student>();
 
   //获取新闻列表数据
   void getStudentList() async {
     var data = await http.get(Config.SERVER_GETSTUDENT);
     if(data.body!=null){
-      List<Student> list = json.decode(data.body);
+      List<Student> list = new List();
+      try{
+        list = json.decode(data.body);
+      }catch(e){
+        print(e.toString());
+      }
+
+
+      list.add(new Student("tmpname","tmpclass"));
+
       listData.addAll(list);
       setState(() {
 
@@ -57,7 +66,7 @@ class NewsPageState extends State<NewsPage> {
           Student item = listData[index];
 
           return ListTile(
-            title: Text(item.name),
+            title: Text(item.realname),
             subtitle: Text(item.clazz),
             leading: Icon(Icons.fiber_new),
             trailing: Icon(Icons.arrow_forward),

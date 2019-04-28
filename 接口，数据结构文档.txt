@@ -1,40 +1,123 @@
+----------------------------
+功能：
+1.学生信息的增删改查 略
+2.作业的增删改查
+学生登陆提交作业，对应作业id，添加到作业表，作业只显示在课堂的内页--》详情页
+教师点击已批改，将其由0--》1
+教师在课程管理点击进内页，可查看课堂考勤情况和作业情况
+3.学生日常考勤，类似作业，学生端点击到达，类似提交作业，老师审批
+4.增删改查学生每次课堂表现
+课堂表现和考勤结合在一起，0~5四个等级。默认3，没到是0
+5.作业分析情况的增删改查
+和课堂表现类似，在课堂详情页的作业列表页对其进行打分，还是由学生点击提交，显示在课堂详情页
+6.学期末总结
+根据学生考勤情况和作业情况对其进行总结
+7.学生下一步努力方向的建议
+老师可以对学生添加评价
+--------------------------------
+注册
 /login
 req:username password
 res:success/error
 -----
+登录
 /regist
 req: username password realname
 res:success/error
 -----
+全部学生信息获取
 /getstu
 req:
 res:[student,student]
 -----
+学生信息查询
 /searchstu
 req: stu
 res:[student,student]
 -----
+学生信息修改
 /updatestu
 req: id username password realname class
 res:success/error
+添加学生
 /addstu
 req:username password realname class
 res:success/error
 -----
+删除学生
 /deletestu
 req:id
 res:success/error
 -----
-/getclasstask
+获取全部课堂信息
+/** /getclasstask
 req:
 res:[classtask,classtask]
 -----
+查询当前课程下的作业
 /searchclasstask
-req:id
-res:[classtask,classtask]
+req:cid
+res:[classtask,classtask]*/
 -----
-
+//修改作业信息
+/updateclasstask
+req: id name content
+res:success/error
+-----
+//增加作业
+/addclasstask
+req: id name content cid
+res:success/error
+-----
+//删除作业
+/deleteclasstask
+req: id
+res:success/error
+-----
+学生提交作业
+/domyclasstask
+req:htid sid
+res:success/error
+删除做的作业
+req:htid sid
+/deletemyclasstask
+res:success/error
+-------
 ----------------
+增加课程
+/addcourse
+req:name time
+res:success/error
+删除课程
+/deletecourse
+req:id
+res:success/error
+查询课程
+/searchcourse
+req:id
+res:[course,course]
+修改课程
+/updatecourse
+req:id name time
+res:success/error
+----------------
+学生提交考勤
+/addattendance
+req:cid,sid
+res:success/error
+/updateattendance
+req:aid state
+res:success/error
+/getattendance
+req:cid sid//可选
+res:[attendance]
+----------------
+/addcomment//增加评语
+req:sid tid content
+res:success/error
+/deletecomment//删除评语
+req:coid
+res:success/error
 ----------------
 Student{
 	id
@@ -53,7 +136,29 @@ Classtask{
 	id
 	name
 	content
-	stuname
+	cid
+}
+Doclasstask{
+    id
+    sid
+    state
+}
+Course{
+id
+name
+time
+}
+Attendance{
+    aid
+    cid
+    sid
+    sname
+    state
+}
+Comment{
+    cid
+    tname
+    content
 }
 
 

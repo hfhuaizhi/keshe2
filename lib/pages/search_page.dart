@@ -45,7 +45,7 @@ class _SearchState extends State<SearchPage>{
           Student item = listData[index];
 
           return ListTile(
-            title: Text(item.name),
+            title: Text(item.realname),
             subtitle: Text(item.clazz),
             leading: Icon(Icons.fiber_new),
             trailing: Icon(Icons.arrow_forward),
@@ -70,7 +70,13 @@ class _SearchState extends State<SearchPage>{
     var res = await http.get(Config.SERVER_SEARCHSTU+"?stu=$v");
     if(res.body!=null){
       listData.clear();
-      List<Student> list = json.decode(res.body);
+      List<Student> list = new List();
+      try{
+        list = json.decode(res.body);
+      }catch(e){
+        print(e.toString());
+      }
+      list.add(Student("hahahha", "hah"));
       listData.addAll(list);
       setState(() {
 

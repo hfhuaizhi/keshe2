@@ -13,12 +13,13 @@ class App extends StatefulWidget {
 class AppState extends State<App> {
   //当前选择页面索引
   var _currentIndex = 0;
+  var titles = ["这是首页","这是首页2","学生管理","关于"];
 
   HomePage homePage;
 
   ProductPage productPage;
 
-  NewsPage newsPage;
+  StudentPage studentPage;
 
   AboutUsPage aboutUsPage;
 
@@ -37,16 +38,15 @@ class AppState extends State<App> {
         return productPage;
 
       case 2:
-        if(newsPage == null){
-          newsPage = NewsPage();
+        if(studentPage == null){
+          studentPage = StudentPage();
         }
-        return newsPage;
+        return studentPage;
       case 3:
         if(aboutUsPage == null){
           aboutUsPage = AboutUsPage();
         }
         return aboutUsPage;
-
     }
   }
 
@@ -54,7 +54,7 @@ class AppState extends State<App> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutterkeshe'),
+        title: Text(titles[_currentIndex]),
         leading: Icon(Icons.home),
         actions: <Widget>[
           //右侧内边距
@@ -62,10 +62,7 @@ class AppState extends State<App> {
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {
-                Fluttertoast.showToast(msg: "当前页面$_currentIndex");
-                Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return SearchPage();
-                }));
+                onSearchPress();
               },
               child: Icon(
                 Icons.search,
@@ -114,6 +111,46 @@ class AppState extends State<App> {
               icon: Icon(Icons.insert_comment),
             ),
           ]),
+      floatingActionButton: FloatingActionButton(
+          onPressed: (){
+              onAddPress();
+          },
+          child: new Icon(Icons.add)
+          ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
+  }
+
+  void onSearchPress(){
+
+    switch(_currentIndex){
+      case 0:
+
+        break;
+      case 1:
+        break;
+      case 2:
+        Fluttertoast.showToast(msg: "当前页面$_currentIndex");
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+          return SearchPage();
+        }));
+        break;
+      case 3:
+        break;
+    }
+  }
+  void onAddPress() {
+    switch(_currentIndex){
+      case 0:
+
+        break;
+      case 1:
+        break;
+      case 2:
+
+        break;
+      case 3:
+        break;
+    }
   }
 }

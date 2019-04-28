@@ -118,7 +118,7 @@ class _LoginState extends State<Login>{
     var res = await http.get(Config.SERVER_LOGIN+"?username="+username+"&password="+password);
     String body = res.body;
     Navigator.pushNamed(context, "app");
-    return;
+    //return;
     if(body!=null&&body.contains("success")){
       Fluttertoast.showToast(msg: "登录成功"+body);
 
@@ -128,8 +128,8 @@ class _LoginState extends State<Login>{
       Fluttertoast.showToast(msg: "登录失败"+body);
     //todo 暂行进入主界面
       Navigator.pushNamed(context, "app");
-
     }
+    Navigator.pop(context);
   }
 
   void _doRegist() {
