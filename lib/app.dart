@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'pages/about_us_page.dart';
 import 'pages/home_page.dart';
 import 'pages/students_page.dart';
-import 'pages/product_page.dart';
+import 'pages/course_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'pages/search_page.dart';
+import 'pages/students_add.dart';
 class App extends StatefulWidget {
   @override
   AppState createState() => AppState();
@@ -17,7 +18,7 @@ class AppState extends State<App> {
 
   HomePage homePage;
 
-  ProductPage productPage;
+  CoursePage coursePage;
 
   StudentPage studentPage;
 
@@ -32,10 +33,10 @@ class AppState extends State<App> {
         }
         return homePage;
       case 1:
-        if(productPage == null){
-          productPage = ProductPage();
+        if(coursePage == null){
+          coursePage = CoursePage();
         }
-        return productPage;
+        return coursePage;
 
       case 2:
         if(studentPage == null){
@@ -94,7 +95,7 @@ class AppState extends State<App> {
             ),
             BottomNavigationBarItem(
               title: Text(
-                '学生管理',
+                '课堂管理',
               ),
               icon: Icon(Icons.apps),
             ),
@@ -102,7 +103,7 @@ class AppState extends State<App> {
               title: Text(
                 '学生管理',
               ),
-              icon: Icon(Icons.fiber_new),
+              icon: Icon(Icons.supervisor_account),
             ),
             BottomNavigationBarItem(
               title: Text(
@@ -110,7 +111,8 @@ class AppState extends State<App> {
               ),
               icon: Icon(Icons.insert_comment),
             ),
-          ]),
+          ]
+      ),
       floatingActionButton: FloatingActionButton(
           onPressed: (){
               onAddPress();
@@ -147,7 +149,9 @@ class AppState extends State<App> {
       case 1:
         break;
       case 2:
-
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+          return AddStudent();
+        }));
         break;
       case 3:
         break;

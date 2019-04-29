@@ -16,6 +16,7 @@ class _AddStudentState extends State<AddStudent>{
   TextEditingController _unameController = new TextEditingController();
   TextEditingController _pwdController = new TextEditingController();
   TextEditingController _realNameController = new TextEditingController();
+  TextEditingController _clazzController = new TextEditingController();
   GlobalKey _formKey= new GlobalKey<FormState>();
   @override
   void initState() {
@@ -95,6 +96,20 @@ class _AddStudentState extends State<AddStudent>{
 
                   }
               ),
+              TextFormField(
+                  controller: _realNameController,
+                  decoration: InputDecoration(
+                      labelText: "班级",
+                      hintText: "班级",
+                      icon: Icon(Icons.class_)
+                  ),
+                  validator: (v) {
+                    return v
+                        .trim()
+                        .length > 1 ? null : "不能为空哦";
+
+                  }
+              ),
               // 登录按钮
               Padding(
                 padding: const EdgeInsets.only(top: 28.0),
@@ -126,10 +141,11 @@ class _AddStudentState extends State<AddStudent>{
     String username = _unameController.text;
     String password = _pwdController.text;
     String realname = _realNameController.text;
-    var res = await http.get(Config.SERVER_REGIST+"?username=$username&password=$password&realname=$realname");
+    String clazz = _clazzController.text;
+    var res = await http.get(Config.SERVER_REGIST+"?username=$username&password=$password&realname=$realname&class=$clazz");
     String body = res.body;
     body = "fail";
-    if(body!=null&&body.contains("success")){
+    if(body!=null&&body.contains(Config.SUCCESS)){
       showDialog<Null>(
         context: context,
         barrierDismissible: false,

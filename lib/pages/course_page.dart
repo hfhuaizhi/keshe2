@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-import '../model/news.dart';
-import '../services/news.dart';
-import 'students_detail_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:keshe2/conf/configure.dart';
 import 'dart:convert';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:keshe2/model/student.dart';
+import 'package:keshe2/model/course.dart';
+import 'courses_detail_page.dart';
 
-//新闻页面
-class StudentPage extends StatefulWidget {
+class CoursePage extends StatefulWidget{
   @override
-  StudentPageState createState() => StudentPageState();
+  CoursePageState createState() => CoursePageState();
 }
 
-class StudentPageState extends State<StudentPage> {
-  List<Student> listData = List<Student>();
+class CoursePageState extends State<CoursePage>{
+
+  List<Course> listData = List<Course>();
 
   //获取新闻列表数据
   void getStudentList() async {
     var data = await http.get(Config.SERVER_GETSTUDENT);
+    List<Course> list = new List();
     if(data.body!=null){
-      List<Student> list = new List();
+
       try{
         list = json.decode(data.body);
       }catch(e){
@@ -29,15 +28,17 @@ class StudentPageState extends State<StudentPage> {
       }
 
 
-      list.add(new Student("tmpname","tmpclass"));
-
-      listData.addAll(list);
+      list.add(new Course(name: "tmpname",time:"2050-06-03"));
       setState(() {
-
+        listData.addAll(list);
       });
     }else{
-      Fluttertoast.showToast(msg: "获取学生列表失败");
+      Fluttertoast.showToast(msg: "获取课程列表失败");
     }
+    list.add(new Course(name: "tmpname",time:"2050-06-03"));
+    setState(() {
+      listData.addAll(list);
+    });
   }
 
   @override
@@ -55,20 +56,20 @@ class StudentPageState extends State<StudentPage> {
         scrollDirection: Axis.vertical,
         //分隔线构建器
         separatorBuilder: (BuildContext contex, int index) => Divider(
-              height: 1.0,
-              color: Colors.grey,
-            ),
+          height: 1.0,
+          color: Colors.grey,
+        ),
         itemCount: listData.length,
         //列表项构建器
         itemBuilder: (BuildContext contex, int index) {
 
           //新闻列表项数据
-          Student item = listData[index];
+          Course item = listData[index];
 
           return ListTile(
-            title: Text(item.realname),
-            subtitle: Text(item.clazz),
-            leading: Icon(Icons.fiber_new),
+            title: Text(item.name),
+            subtitle: Text(item.time),
+            leading: Icon(Icons.golf_course),
             trailing: Icon(Icons.arrow_forward),
             contentPadding: EdgeInsets.all(10.0),
             enabled: true,
@@ -78,7 +79,7 @@ class StudentPageState extends State<StudentPage> {
                 context,
                 MaterialPageRoute(
                   //  builder: (context) => NewsDetailPage(item: item)),
-                    builder: (context) => StudentsDetailPage(item)
+                    builder: (context) => CoursesDetailPage(item)
                 ),
               );
             },
@@ -87,4 +88,5 @@ class StudentPageState extends State<StudentPage> {
       ),
     );
   }
+
 }

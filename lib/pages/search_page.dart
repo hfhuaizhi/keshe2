@@ -57,7 +57,7 @@ class _SearchState extends State<SearchPage>{
                 context,
                 MaterialPageRoute(
                   //  builder: (context) => NewsDetailPage(item: item)),
-                    builder: (context) => StudentsDetailPage(item: item)
+                    builder: (context) => StudentsDetailPage(item)
                 ),
               );
             },
