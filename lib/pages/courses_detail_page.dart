@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:keshe2/conf/configure.dart';
 import 'dart:convert';
+import 'kaoqin_page.dart';
 
 class CoursesDetailPage extends StatefulWidget{
   Course item;
@@ -25,7 +26,6 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
   Widget divider1=Divider(color: Colors.blue,);
   Widget divider2=Divider(color: Colors.green);
   TabController _tabController; //需要定义一个Controller
-  List<Widget> viewLists = new List();
   List tabs = ["考勤", "作业"];
   _CoursesDetailPageState(this.item);
   @override
@@ -33,7 +33,6 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
     super.initState();
     _tabController = TabController(length: tabs.length,vsync: this);
     getCourseById();
-    initView()
   }
   @override
   Widget build(BuildContext context) {
@@ -134,22 +133,28 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
                   )
                 ],
               ),
-              TabBar(   //生成Tab菜单
-                  controller: _tabController,
-                  tabs: tabs.map((e) => Tab(text: e)).toList(),
-                labelColor: Colors.red,
-              ),
-                ListView.separated(
-                  itemCount: 100,
-                  //列表项构造器
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(title: Text("$index"));
-                  },
-                  //分割器构造器
-                  separatorBuilder: (BuildContext context, int index) {
-                    return index%2==0?divider1:divider2;
-                  },
+                Padding(padding: EdgeInsets.only(top: 50),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RaisedButton(
+                      child: Text("查看考勤"),
+                      onPressed: (){
+                        showKaoqin();
+                      },
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 30,right: 30),
+                    ),
+                    RaisedButton(
+                      child: Text("查看作业"),
+                      onPressed: (){
+                        showZuoye();
+                      },
+                    )
+                  ],
                 )
+
             ],
           )
       ),
@@ -198,5 +203,17 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
   }
 
   void initView() {}
+
+  void showKaoqin() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+      return kaoqinPage(item: item,);
+    }));
+  }
+
+  void showZuoye() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+      return kaoqinPage(item: item,);
+    }));
+  }
 }
 
