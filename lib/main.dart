@@ -4,6 +4,7 @@ import 'loading.dart';
 import 'app.dart';
 import 'login.dart';
 import 'regist.dart';
+import 'stuapp.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
@@ -13,6 +14,7 @@ void main() => runApp(MaterialApp(
   //添加路由
   routes: <String,WidgetBuilder>{
     "app": (BuildContext context) => App(),
+    "stuapp":(BuildContext context) => StuApp(),
     "login": (BuildContext context) => Login(),
     "regist": (BuildContext context) => Regist(),
   },

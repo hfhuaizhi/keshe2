@@ -5,18 +5,18 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'utils/SpUtil.dart';
 import 'conf/GlobalValue.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-class Login extends StatefulWidget{
+
+class Login extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _LoginState();
   }
-
 }
 
-class _LoginState extends State<Login>{
+class _LoginState extends State<Login> {
   TextEditingController _unameController = new TextEditingController();
   TextEditingController _pwdController = new TextEditingController();
-  GlobalKey _formKey= new GlobalKey<FormState>();
+  GlobalKey _formKey = new GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,34 +34,26 @@ class _LoginState extends State<Login>{
                   decoration: InputDecoration(
                       labelText: "用户名",
                       hintText: "用户名",
-                      icon: Icon(Icons.person)
-                  ),
+                      icon: Icon(Icons.person)),
                   // 校验用户名
                   validator: (v) {
-                    if(v.trim().length<6||v.trim().length>15){
+                    if (v.trim().length < 6 || v.trim().length > 15) {
                       return "用户名长度应大于6并且小于15";
-                    }else{
+                    } else {
                       return null;
                     }
-                  }
-
-              ),
+                  }),
               TextFormField(
                   controller: _pwdController,
                   decoration: InputDecoration(
                       labelText: "密码",
                       hintText: "您的登录密码",
-                      icon: Icon(Icons.lock)
-                  ),
+                      icon: Icon(Icons.lock)),
                   obscureText: true,
                   //校验密码
                   validator: (v) {
-                    return v
-                        .trim()
-                        .length > 5 ? null : "密码不能少于6位";
-
-                  }
-              ),
+                    return v.trim().length > 5 ? null : "密码不能少于6位";
+                  }),
               // 登录按钮
               Padding(
                 padding: const EdgeInsets.only(top: 28.0),
@@ -70,24 +62,16 @@ class _LoginState extends State<Login>{
                     Expanded(
                       child: RaisedButton(
                         padding: EdgeInsets.all(15.0),
-                        child: Text("用户登录"),
-                        color: Theme
-                            .of(context)
-                            .primaryColor,
+                        child: Text("教师登录"),
+                        color: Theme.of(context).primaryColor,
                         textColor: Colors.white,
                         onPressed: () {
-                          //在这里不能通过此方式获取FormState，context不对
-                          //print(Form.of(context));
-
-                          // 通过_formKey.currentState 获取FormState后，
-                          // 调用validate()方法校验用户名密码是否合法，校验
-                          // 通过后再提交数据。
-                          if((_formKey.currentState as FormState).validate()){
+                          if ((_formKey.currentState as FormState).validate()) {
                             String username = _unameController.text;
                             String password = _pwdController.text;
-                            _doLogin(username,password);
+                            _doLogin(username, password);
                             //验证通过提交数据
-                          }else{
+                          } else {
                             Fluttertoast.showToast(msg: "填写内容还有不规范的哦");
                           }
                         },
@@ -96,16 +80,37 @@ class _LoginState extends State<Login>{
                     Padding(
                       padding: EdgeInsets.all(10),
                     ),
-                    Expanded(child: RaisedButton(onPressed: (){
-                      _doRegist();
-                    },
-                    textColor: Colors.white,
+                    Expanded(
+                        child: RaisedButton(
+                      onPressed: () {
+                        if ((_formKey.currentState as FormState).validate()) {
+                          String username = _unameController.text;
+                          String password = _pwdController.text;
+                          _doStudentLogin(username, password);
+                          //验证通过提交数据
+                        } else {
+                          Fluttertoast.showToast(msg: "填写内容还有不规范的哦");
+                        }
+                      },
+                      textColor: Colors.white,
                       color: Theme.of(context).primaryColor,
-                      child: Text("用户注册"),
+                      child: Text("学生登录"),
                       padding: EdgeInsets.all(15.0),
                     ))
                   ],
                 ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 30),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  _doRegist();
+                },
+                textColor: Colors.white,
+                color: Theme.of(context).primaryColor,
+                child: Text("教师注册"),
+                padding: EdgeInsets.all(15.0),
               )
             ],
           ),
@@ -113,29 +118,42 @@ class _LoginState extends State<Login>{
       ),
     );
   }
-  void _doLogin(String username,String password) async{
+
+  void _doLogin(String username, String password) async {
     Fluttertoast.showToast(msg: "dologin");
-    var res = await http.get(Config.SERVER_LOGIN+"?username="+username+"&password="+password);
+    var res = await http.get(Config.SERVER_LOGIN +
+        "?username=" +
+        username +
+        "&password=" +
+        password);
     String body = res.body;
-    Navigator.pushNamed(context, "app");
+   // Navigator.pushNamed(context, "app");
     //return;
-    if(body.isNotEmpty&&body.contains("success")){
-      Fluttertoast.showToast(msg: "登录成功"+body);
+    if (body.isNotEmpty && body.contains("success")) {
+      Fluttertoast.showToast(msg: "登录成功" + body);
 
       setString(GlobalValue.USERNAME, username);
-      Navigator.pushNamed(context, "app");
-    }else{
-      Fluttertoast.showToast(msg: "登录失败"+body);
-    //todo 暂行进入主界面
-      Navigator.pushNamed(context, "app");
+    } else {
+      Fluttertoast.showToast(msg: "登录失败" + body);
+      //todo 暂行进入主界面
     }
-    Navigator.pop(context);
+    //Navigator.of(context).pop();
+    Navigator.pushReplacementNamed(context, "app");
   }
 
   void _doRegist() {
     Navigator.pushNamed(context, "regist");
+  }
 
+  void _doStudentLogin(String username, String password) async {
+    var res = await http
+        .get(Config.SERVER_STULOGIN + "?username=$username&password=$password");
+    if (res.body.contains("success")) {
+      setString(GlobalValue.USERNAME, username);
+    } else {
+      Fluttertoast.showToast(msg: "学生登录失败");
+    }
+    //Navigator.pop(context);
+    Navigator.pushReplacementNamed(context, "stuapp");
   }
 }
-
-

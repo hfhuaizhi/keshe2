@@ -6,21 +6,21 @@ import 'pages/course_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'pages/search_page.dart';
 import 'pages/students_add.dart';
-class App extends StatefulWidget {
+import 'pagesstu/stuwork_page.dart';
+class StuApp extends StatefulWidget {
   @override
-  AppState createState() => AppState();
+  StuAppState createState() => StuAppState();
 }
 
-class AppState extends State<App> {
+class StuAppState extends State<StuApp> {
   //当前选择页面索引
   var _currentIndex = 0;
-  var titles = ["首页","课堂管理","学生管理","关于"];
-  var cansearch = [false,false,true,false];
-  var iconList = [Icon(Icons.home),
-  Icon(Icons.apps),
-  Icon(Icons.supervisor_account),
+  var titles = ["功能","我的","关于"];
+  var cansearch = [false,false,false];
+  var iconList = [Icon(Icons.change_history),
+  Icon(Icons.person),
   Icon(Icons.insert_comment)];
-  HomePage homePage;
+  StuwordPage wordPage;
 
   CoursePage coursePage;
 
@@ -32,10 +32,10 @@ class AppState extends State<App> {
   currentPage(){
     switch(_currentIndex){
       case 0:
-        if(homePage == null){
-          homePage = HomePage();
+        if(wordPage == null){
+          wordPage = StuwordPage();
         }
-        return homePage;
+        return wordPage;
       case 1:
         if(coursePage == null){
           coursePage = CoursePage();
@@ -43,11 +43,6 @@ class AppState extends State<App> {
         return coursePage;
 
       case 2:
-        if(studentPage == null){
-          studentPage = StudentPage();
-        }
-        return studentPage;
-      case 3:
         if(aboutUsPage == null){
           aboutUsPage = AboutUsPage();
         }
@@ -96,27 +91,21 @@ class AppState extends State<App> {
           items: [
             BottomNavigationBarItem(
               title: Text(
-                '首页',
+                titles[0],
               ),
-              icon: Icon(Icons.home),
+              icon: iconList[0],
             ),
             BottomNavigationBarItem(
               title: Text(
-                '课堂管理',
+                titles[1],
               ),
-              icon: Icon(Icons.apps),
+              icon: iconList[1],
             ),
             BottomNavigationBarItem(
               title: Text(
-                '学生管理',
+                titles[2],
               ),
-              icon: Icon(Icons.supervisor_account),
-            ),
-            BottomNavigationBarItem(
-              title: Text(
-                '关于我们',
-              ),
-              icon: Icon(Icons.insert_comment),
+              icon: iconList[2],
             ),
           ]
       ),

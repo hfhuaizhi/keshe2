@@ -60,9 +60,10 @@ class _LoadingState extends State<LoadingPage>{
 }
 
 void _godoLogin(BuildContext context) {
-  Navigator.of(context).pushReplacementNamed("login");
+  Navigator.pushReplacementNamed(context, "login");
 }
 
 void _gotoMainPager(BuildContext context) {
   Navigator.of(context).pushReplacementNamed("app");
+
 }

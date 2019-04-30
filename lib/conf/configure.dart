@@ -5,6 +5,7 @@ class Config{
   //static const String SERVER_ADDRESS = "http://"+IP+":"+PORT;
   static const String SERVER_ADDRESS = "http://www.baidu.com";
   static const String SERVER_LOGIN = SERVER_ADDRESS+"/login";
+  static const String SERVER_STULOGIN = SERVER_ADDRESS+"/stulogin";
   static const String SERVER_REGIST = SERVER_ADDRESS+"/regist";
 
   static const String SERVER_GETSTUDENT = SERVER_ADDRESS+"/getstu";
@@ -16,6 +17,7 @@ class Config{
   static const String SERVER_UPDATECLASSTASK = SERVER_ADDRESS+"/updateclasstask";
   static const String SERVER_ADDCLASSTASK = SERVER_ADDRESS+"/addclasstask";
   static const String SERVER_DELETECLASSTASK = SERVER_ADDRESS+"/deleteclasstask";
+  static const String SERVER_SEARCHCLASSTASK = SERVER_ADDRESS+ "/searchclasstask";
 
   static const String SERVER_DOMYCLASSTASK = SERVER_ADDRESS+"/domyclasstask";
   static const String SERVER_DELETEMYCLASSTASK = SERVER_ADDRESS+"/deletemyclasstask";

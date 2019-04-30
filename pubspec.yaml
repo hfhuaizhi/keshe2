@@ -28,6 +28,7 @@ dependencies:
   flutter_swiper: 1.1.4
   shared_preferences: ^0.4.2
   fluttertoast: ^3.0.3
+  barcode_scan: 0.0.8
 
 dev_dependencies:
   flutter_test:

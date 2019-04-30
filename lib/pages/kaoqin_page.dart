@@ -49,7 +49,7 @@ class _KaoqinState extends State<kaoqinPage>{
             child: ListTile(
             title: Text(item.sname),
             subtitle: Text(item.state),
-            leading: Icon(Icons.fiber_new),
+            leading: Icon(Icons.location_on),
             trailing: RaisedButton(
                 child: Text("通过"),
                 onPressed: (){

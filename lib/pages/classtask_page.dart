@@ -27,7 +27,7 @@ class ClassTaskPageState extends State<ClassTaskPage> {
   ClassTaskPageState(this.cItem);
   //获取新闻列表数据
   void getClassTaskList() async {
-    var data = await http.get(Config.SERVER_SEARCHCOURSE+"?id=${cItem.id}");
+    var data = await http.get(Config.SERVER_SEARCHCLASSTASK+"?cid=${cItem.id}");
     if(data.body!=null){
       List<ClassTask> list = new List();
       try{
@@ -125,22 +125,22 @@ class ClassTaskPageState extends State<ClassTaskPage> {
           onPressed: (){
         showDialog(context: context,builder: (context){
           return AlertDialog(
-            title: Text("新增课程"),
+            title: Text("新增作业"),
             content:Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 TextField(
                   controller: _nameCon,
                   decoration: InputDecoration(
-                    labelText: "课程名称",
-                    hintText: "课程名称",
+                    labelText: "作业名称",
+                    hintText: "作业名称",
                   ),
                 ),
                 TextField(
                   controller: _timeCon,
                   decoration: InputDecoration(
-                    labelText: "课程时间",
-                    hintText: "课程时间",
+                    labelText: "作业内容",
+                    hintText: "作业内容",
                   ),
                 )
               ],),

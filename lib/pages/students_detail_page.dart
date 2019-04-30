@@ -46,7 +46,6 @@ class _StudentsDetailPageState extends State<StudentsDetailPage>{
             children: <Widget>[
                 TextField(
                   autofocus: canEdit,
-                  enabled: canEdit,
                   controller: _usernameCon,
                   decoration: InputDecoration(
                       labelText: "用户名",
@@ -56,6 +55,7 @@ class _StudentsDetailPageState extends State<StudentsDetailPage>{
 
                 ),
               TextField(
+                autofocus: canEdit,
                 enabled: canEdit,
                 controller: _passwordCon,
                 decoration: InputDecoration(

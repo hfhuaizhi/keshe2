@@ -7,6 +7,7 @@ import 'package:keshe2/conf/configure.dart';
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:keshe2/model/student.dart';
+import 'students_add.dart';
 
 //新闻页面
 class StudentPage extends StatefulWidget {
@@ -68,7 +69,7 @@ class StudentPageState extends State<StudentPage> {
           return ListTile(
             title: Text(item.realname),
             subtitle: Text(item.clazz),
-            leading: Icon(Icons.fiber_new),
+            leading: Icon(Icons.accessibility_new),
             trailing: Icon(Icons.arrow_forward),
             contentPadding: EdgeInsets.all(10.0),
             enabled: true,
@@ -85,6 +86,19 @@ class StudentPageState extends State<StudentPage> {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return AddStudent((){
+                setState(() {
+                  getStudentList();
+                });
+              });
+            }));
+          },
+        child: Icon(Icons.add),
+          
+          ),
     );
   }
 }

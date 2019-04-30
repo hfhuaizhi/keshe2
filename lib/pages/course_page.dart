@@ -14,11 +14,12 @@ class CoursePage extends StatefulWidget{
 }
 
 class CoursePageState extends State<CoursePage>{
-
+  TextEditingController _nameCon = new TextEditingController();
+  TextEditingController _timeCon = new TextEditingController();
   List<Course> listData = List<Course>();
 
   //获取新闻列表数据
-  void getStudentList() async {
+  void getCourseList() async {
     String username = await getString(GlobalValue.USERNAME);
     var data = await http.get(Config.SERVER_GETCOURSEBYTUSERNAME+"?username=$username");
     List<Course> list = new List();
@@ -46,7 +47,7 @@ class CoursePageState extends State<CoursePage>{
 
   @override
   void initState() {
-    getStudentList();
+    getCourseList();
     super.initState();
   }
 
@@ -92,9 +93,65 @@ class CoursePageState extends State<CoursePage>{
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: (){
-
+            showDialog(context: context,builder: (context){
+              return AlertDialog(
+                title: Text("新增课程"),
+                content:Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    TextField(
+                      controller: _nameCon,
+                      decoration: InputDecoration(
+                        labelText: "课程名称",
+                        hintText: "课程名称",
+                      ),
+                    ),
+                    TextField(
+                      controller: _timeCon,
+                      decoration: InputDecoration(
+                        labelText: "课程时间",
+                        hintText: "课程时间",
+                      ),
+                    )
+                  ],),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text("取消"),
+                    onPressed: (){
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  FlatButton(
+                    child: Text("确定"),
+                    onPressed: (){
+                      String name = _nameCon.text;
+                      String time = _timeCon.text;
+                      if(name.isEmpty||time.isEmpty){
+                        Fluttertoast.showToast(msg: "不能为空");
+                        return;
+                      }
+                      Navigator.of(context).pop();
+                      addCourse(name,time);
+                    },
+                  ),
+                ],
+              );
+            });
       }),
     );
+  }
+
+  void addCourse(String name, String time) async{
+    var res = await http.get(Config.SERVER_ADDCOURSE+"?name=$name&time=$time");
+    if(res.body!=null){
+      if(res.body.contains(Config.SUCCESS)){
+        setState(() {
+          getCourseList();
+        });
+      }else{
+        Fluttertoast.showToast(msg: "出错");
+      }
+    }
   }
 
 }

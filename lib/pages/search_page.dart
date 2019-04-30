@@ -48,7 +48,7 @@ class _SearchState extends State<SearchPage>{
           return ListTile(
             title: Text(item.realname),
             subtitle: Text(item.clazz),
-            leading: Icon(Icons.fiber_new),
+            leading: Icon(Icons.accessibility_new),
             trailing: Icon(Icons.arrow_forward),
             contentPadding: EdgeInsets.all(10.0),
             enabled: true,

@@ -4,7 +4,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:keshe2/conf/configure.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+VoidCallback callback;
 class AddStudent extends StatefulWidget{
+  AddStudent(VoidCallback onSuccess){
+    callback = onSuccess;
+  }
   @override
   State<StatefulWidget> createState() {
     return _AddStudentState();
@@ -156,6 +160,7 @@ class _AddStudentState extends State<AddStudent>{
               new FlatButton(
                 child: new Text('确定'),
                 onPressed: () {
+                  callback();
                   Navigator.of(context).pop();
                 },
               ),

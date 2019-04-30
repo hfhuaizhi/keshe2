@@ -51,7 +51,7 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
                   decoration: InputDecoration(
                       labelText: "课程名",
                       hintText: "课程名",
-                      icon: Icon(Icons.pregnant_woman)
+                      icon: Icon(Icons.assignment)
                   ),
 
                 ),
