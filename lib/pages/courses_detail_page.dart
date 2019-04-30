@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:keshe2/conf/configure.dart';
 import 'dart:convert';
 import 'kaoqin_page.dart';
+import 'classtask_page.dart';
 
 class CoursesDetailPage extends StatefulWidget{
   Course item;
@@ -25,13 +26,12 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
   TextEditingController _timeCon = new TextEditingController();
   Widget divider1=Divider(color: Colors.blue,);
   Widget divider2=Divider(color: Colors.green);
-  TabController _tabController; //需要定义一个Controller
-  List tabs = ["考勤", "作业"];
   _CoursesDetailPageState(this.item);
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: tabs.length,vsync: this);
+    _nameCon.text = item.name;
+    _timeCon.text = item.time;
     getCourseById();
   }
   @override
@@ -162,7 +162,6 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
   }
   @override
   void dispose() {
-    _tabController.dispose();
     super.dispose();
   }
   void updateCourse() async{
@@ -206,13 +205,13 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
 
   void showKaoqin() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context){
-      return kaoqinPage(item: item,);
+      return kaoqinPage(item: item);
     }));
   }
 
   void showZuoye() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context){
-      return kaoqinPage(item: item,);
+      return ClassTaskPage(item);
     }));
   }
 }

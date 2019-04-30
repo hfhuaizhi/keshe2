@@ -19,11 +19,13 @@ class Config{
 
   static const String SERVER_DOMYCLASSTASK = SERVER_ADDRESS+"/domyclasstask";
   static const String SERVER_DELETEMYCLASSTASK = SERVER_ADDRESS+"/deletemyclasstask";
+  static const String SERVER_UPDATEMYCLASSTASK = SERVER_ADDRESS+"/updatemyclasstask";
 
   static const String SERVER_ADDCOURSE = SERVER_ADDRESS+"/addcourse";
   static const String SERVER_DELETECOURSE = SERVER_ADDRESS+"/deletecourse";
   static const String SERVER_SEARCHCOURSE = SERVER_ADDRESS+"/searchcourse";
   static const String SERVER_UPDATECOURSE = SERVER_ADDRESS+"/updatecourse";
+  static const String SERVER_GETCOURSEBYTUSERNAME = SERVER_ADDRESS+"/getcoursebyusername";
 
   static const String SERVER_ADDATTENDANCE = SERVER_ADDRESS+"/addattendance";
   static const String SERVER_UPDATEATTENDANCE = SERVER_ADDRESS+"/updateattendance";

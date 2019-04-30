@@ -119,7 +119,7 @@ class _LoginState extends State<Login>{
     String body = res.body;
     Navigator.pushNamed(context, "app");
     //return;
-    if(body!=null&&body.contains("success")){
+    if(body.isNotEmpty&&body.contains("success")){
       Fluttertoast.showToast(msg: "登录成功"+body);
 
       setString(GlobalValue.USERNAME, username);

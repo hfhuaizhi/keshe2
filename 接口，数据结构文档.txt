@@ -59,14 +59,14 @@ res:[classtask,classtask]
 req:cid
 res:[classtask,classtask]*/
 -----
-//修改作业信息
+//修改作业信息-->废弃
 /updateclasstask
 req: id name content
 res:success/error
 -----
 //增加作业
 /addclasstask
-req: id name content cid
+req:name content cid
 res:success/error
 -----
 //删除作业
@@ -79,8 +79,12 @@ res:success/error
 req:htid sid
 res:success/error
 删除做的作业
+/deletemyclasstask-->废弃
 req:htid sid
-/deletemyclasstask
+res:success/error
+批改作业
+/updatemyclasstask
+req:dcid state
 res:success/error
 -------
 ----------------
@@ -95,6 +99,10 @@ res:success/error
 查询课程
 /searchcourse
 req:id
+res:[course,course]
+获得某老师下的课程
+/getcoursebyusername
+req:username
 res:[course,course]
 修改课程
 /updatecourse
@@ -139,8 +147,10 @@ Classtask{
 	cid
 }
 Doclasstask{
-    id
+    dcid
+    clid
     sid
+    sname
     state
 }
 Course{

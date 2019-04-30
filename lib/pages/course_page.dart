@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:keshe2/conf/GlobalValue.dart';
 import 'package:keshe2/conf/configure.dart';
 import 'dart:convert';
 import 'package:keshe2/model/course.dart';
 import 'courses_detail_page.dart';
+import 'package:keshe2/utils/SpUtil.dart';
 
 class CoursePage extends StatefulWidget{
   @override
@@ -17,7 +19,8 @@ class CoursePageState extends State<CoursePage>{
 
   //获取新闻列表数据
   void getStudentList() async {
-    var data = await http.get(Config.SERVER_GETSTUDENT);
+    String username = await getString(GlobalValue.USERNAME);
+    var data = await http.get(Config.SERVER_GETCOURSEBYTUSERNAME+"?username=$username");
     List<Course> list = new List();
     if(data.body!=null){
 
@@ -86,6 +89,11 @@ class CoursePageState extends State<CoursePage>{
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: (){
+
+      }),
     );
   }
 
