@@ -13,6 +13,7 @@ class Config{
   static const String SERVER_UPDATESTU = SERVER_ADDRESS+"/updatestu";
   static const String SERVER_ADDSTU = SERVER_ADDRESS+"/addstu";
   static const String SERVER_DELETESTU = SERVER_ADDRESS+"/deletestu";
+  static const String SERVER_GETSTUBYUSERNAME = SERVER_ADDRESS+"/getstubyusername";
 
   static const String SERVER_UPDATECLASSTASK = SERVER_ADDRESS+"/updateclasstask";
   static const String SERVER_ADDCLASSTASK = SERVER_ADDRESS+"/addclasstask";

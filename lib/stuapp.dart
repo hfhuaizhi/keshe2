@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'pages/search_page.dart';
 import 'pages/students_add.dart';
 import 'pagesstu/stuwork_page.dart';
+import 'pagesstu/student_self_page.dart';
 class StuApp extends StatefulWidget {
   @override
   StuAppState createState() => StuAppState();
@@ -22,9 +23,8 @@ class StuAppState extends State<StuApp> {
   Icon(Icons.insert_comment)];
   StuwordPage wordPage;
 
-  CoursePage coursePage;
 
-  StudentPage studentPage;
+  StudentsSelfPage studentPage;
 
   AboutUsPage aboutUsPage;
 
@@ -37,10 +37,10 @@ class StuAppState extends State<StuApp> {
         }
         return wordPage;
       case 1:
-        if(coursePage == null){
-          coursePage = CoursePage();
+        if(studentPage == null){
+          studentPage = StudentsSelfPage();
         }
-        return coursePage;
+        return studentPage;
 
       case 2:
         if(aboutUsPage == null){

@@ -67,6 +67,11 @@ class _StuwordPageState extends State<StuwordPage>{
                           onPressed: (){
                             Navigator.of(context).pop();
                            // deleteStu();
+                            if(_idCon.text.isNotEmpty){
+                              jiaozuoye();
+                            }else{
+                              Fluttertoast.showToast(msg: "id不能为空");
+                            }
 
                           },
                         ),
@@ -116,5 +121,16 @@ class _StuwordPageState extends State<StuwordPage>{
 
     }
 
+  }
+
+  void jiaozuoye() async{
+    String id = _idCon.text;
+    String username = await getString(GlobalValue.USERNAME);
+    var res = await http.get(Config.SERVER_ADDCLASSTASK+"?clid=$id&username=$username");
+    if(res.body.isNotEmpty&&res.body.contains(Config.SUCCESS)){
+      Fluttertoast.showToast(msg: "作业提交成功");
+    }else{
+      Fluttertoast.showToast(msg: "作业提交失败");
+    }
   }
 }

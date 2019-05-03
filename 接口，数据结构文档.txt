@@ -37,6 +37,9 @@ res:[student,student]
 /searchstu
 req: stu-->(usernamelike)
 res:[student,student]
+/getstubyusername
+req: username
+res: student
 -----
 学生信息修改
 /updatestu
