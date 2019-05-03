@@ -79,7 +79,7 @@ res:success/error
 -----
 学生提交作业
 /domyclasstask
-req:htid sid
+req:clid username
 res:success/error
 删除做的作业
 /deletemyclasstask-->废弃

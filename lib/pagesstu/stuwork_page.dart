@@ -67,6 +67,7 @@ class _StuwordPageState extends State<StuwordPage>{
                           onPressed: (){
                             Navigator.of(context).pop();
                            // deleteStu();
+
                           },
                         ),
                       ],

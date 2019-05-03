@@ -28,14 +28,14 @@ c_id int fkey notnull //外键,课程与作业关系为一对多
 ----
 doclasstask//做作业
 dc_id int key notnull
-s_id int key notnull
+s_username
 state int
 ----
 ----
 course//课堂
 c_id int key notnull
 c_name varchar15 notnull
-//c_time_start varchar20 notnull
+//,;.;,.c_time_start varchar20 notnull
 //c_time_end varchar20 notnull
 c_time varchar20 notnull
 

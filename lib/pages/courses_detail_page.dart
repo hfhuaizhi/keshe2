@@ -8,6 +8,7 @@ import 'package:keshe2/conf/configure.dart';
 import 'dart:convert';
 import 'kaoqin_page.dart';
 import 'classtask_page.dart';
+import 'qrcode_page.dart';
 
 class CoursesDetailPage extends StatefulWidget{
   Course item;
@@ -133,7 +134,7 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
                   )
                 ],
               ),
-                Padding(padding: EdgeInsets.only(top: 50),),
+                Padding(padding: EdgeInsets.only(top: 10),),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -144,12 +145,23 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
                       },
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 30,right: 30),
+                      padding: EdgeInsets.only(left: 10,right: 10),
                     ),
                     RaisedButton(
                       child: Text("查看作业"),
                       onPressed: (){
                         showZuoye();
+                      },
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 10,right: 10),
+                    ),
+                    RaisedButton(
+                      child: Text("查看二维码"),
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return QrCodePage(item.id.toString());
+                        }));
                       },
                     )
                   ],
