@@ -142,7 +142,8 @@ class CoursePageState extends State<CoursePage>{
   }
 
   void addCourse(String name, String time) async{
-    var res = await http.get(Config.SERVER_ADDCOURSE+"?name=$name&time=$time");
+    String username = await getString(GlobalValue.USERNAME);
+    var res = await http.get(Config.SERVER_ADDCOURSE+"?name=$name&time=$time&username=$username");
     if(res.body!=null){
       if(res.body.contains(Config.SUCCESS)){
         setState(() {

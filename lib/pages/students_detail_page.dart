@@ -162,7 +162,7 @@ class _StudentsDetailPageState extends State<StudentsDetailPage>{
       Fluttertoast.showToast(msg: "输入不能为空");
       return;
     }
-    var res = await http.get(Config.SERVER_UPDATESTU+"?id=${item.id}&username=$username&password=$password&realname=$realname&class=$clazz");
+    var res = await http.get(Config.SERVER_UPDATESTU+"?id=${item.id}&username=$username&password=$password&realname=$realname&clazz=$clazz");
     if(res.body.contains(Config.SUCCESS)){
       setState(() {
         canEdit = false;
@@ -183,3 +183,14 @@ class _StudentsDetailPageState extends State<StudentsDetailPage>{
   }
 
 }
+/*
+* 嗯，其实呢，上网还是比较重要的，可能会亏一点或是什么的，其实都没什么太大问题，
+* 之前主卧是有交过网费，现在又搬来的主卧之前有说过网费已和上家结清，
+* 虽然我们也无法确认是否他们真的结清，不过至少他所在的卧室之前是有交过网费的，他继续用网其实也无可厚非
+* 5.1又搬来的两个人他们所在的卧室是一直都没办过网的，他俩的网费，想要精确一点的话可以这么算
+* 先算出正常情况下网费8个人平分需要多少钱，再算出每个人每天需要多少钱，再看现在距离到期还有几天
+* 他俩需要交的钱就是：每人每天的钱*剩余天数*2
+* 至于我们几个怎么分，说真的，我不要，你们几个分吧，我只想晚上回来睡觉前可以上个网玩会儿手机~
+* 嗯，之前新搬来那两个人的网费是我算的，其实是有一些问题，一会儿我把红包还回去，麻烦你们再重新讨论一下，
+* 嗯，费用不要算上我，谢谢啦
+* */

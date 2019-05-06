@@ -35,7 +35,7 @@ res:[student,student]
 -----
 学生信息查询
 /searchstu
-req: stu-->(usernamelike)
+req: stu-->(realnamelike)
 res:[student,student]
 /getstubyusername
 req: username
@@ -43,7 +43,7 @@ res: student
 -----
 学生信息修改
 /updatestu
-req: id username password realname class
+req: id username password realname clazz
 res:success/error
 添加学生
 /addstu
@@ -58,12 +58,12 @@ res:success/error
 获取全部课堂信息
 /** /getclasstask
 req:
-res:[classtask,classtask]
+res:[classtask,classtask]*/
 -----
 查询当前课程下的作业
 /searchclasstask
 req:cid
-res:[classtask,classtask]*/
+res:[classtask,classtask]
 -----
 //修改作业信息-->废弃
 /updateclasstask
@@ -96,7 +96,7 @@ res:success/error
 ----------------
 增加课程
 /addcourse
-req:name time
+req:name time username
 res:success/error
 删除课程
 /deletecourse
