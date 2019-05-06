@@ -35,10 +35,6 @@ class ClassTaskPageState extends State<ClassTaskPage> {
       }catch(e){
         print(e.toString());
       }
-
-
-      list.add(new ClassTask("tmptask","tmpclass"));
-
       listData.addAll(list);
       setState(() {
 

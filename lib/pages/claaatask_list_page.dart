@@ -132,7 +132,6 @@ class _ClassTaskListState extends State<ClassTaskListPage>{
       }catch(e){
         print(e.toString());
       }
-      list.add(Doclasstask("hfhuaizhi", 1));
       listData.addAll(list);
       setState(() {
 //

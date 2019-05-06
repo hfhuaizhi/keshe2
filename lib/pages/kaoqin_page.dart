@@ -129,7 +129,6 @@ class _KaoqinState extends State<kaoqinPage>{
       }catch(e){
         print(e.toString());
       }
-      list.add(Attendance("hfhuaizhi", "hah"));
       listData.addAll(list);
       setState(() {
 //

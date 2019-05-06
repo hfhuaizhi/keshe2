@@ -30,9 +30,6 @@ class CoursePageState extends State<CoursePage>{
       }catch(e){
         print(e.toString());
       }
-
-
-      list.add(new Course(name: "tmpname",time:"2050-06-03"));
       setState(() {
         listData.addAll(list);
       });

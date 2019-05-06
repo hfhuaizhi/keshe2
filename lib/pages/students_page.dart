@@ -28,10 +28,6 @@ class StudentPageState extends State<StudentPage> {
       }catch(e){
         print(e.toString());
       }
-
-
-      list.add(new Student("tmpname","tmpclass"));
-
       listData.addAll(list);
       setState(() {
 
@@ -62,7 +58,6 @@ class StudentPageState extends State<StudentPage> {
         itemCount: listData.length,
         //列表项构建器
         itemBuilder: (BuildContext contex, int index) {
-
           //新闻列表项数据
           Student item = listData[index];
 
@@ -97,7 +92,6 @@ class StudentPageState extends State<StudentPage> {
             }));
           },
         child: Icon(Icons.add),
-          
           ),
     );
   }

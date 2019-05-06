@@ -77,7 +77,6 @@ class _SearchState extends State<SearchPage>{
       }catch(e){
         print(e.toString());
       }
-      list.add(Student("hahahha", "hah"));
       listData.addAll(list);
       setState(() {
 
