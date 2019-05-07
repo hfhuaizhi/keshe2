@@ -25,7 +25,7 @@ class _SearchState extends State<SearchPage>{
              autofocus: true,
              onChanged: (v){
                if(v.isNotEmpty){
-                 _SeatchStudentList(v);
+                 _SearchStudentList(v);
                  //print(v);
                }
              },
@@ -46,8 +46,8 @@ class _SearchState extends State<SearchPage>{
           Student item = listData[index];
 
           return ListTile(
-            title: Text(item.realname),
-            subtitle: Text(item.clazz),
+            title: Text(item.s_realname),
+            subtitle: Text(item.s_class),
             leading: Icon(Icons.accessibility_new),
             trailing: Icon(Icons.arrow_forward),
             contentPadding: EdgeInsets.all(10.0),
@@ -58,7 +58,8 @@ class _SearchState extends State<SearchPage>{
                 context,
                 MaterialPageRoute(
                   //  builder: (context) => NewsDetailPage(item: item)),
-                    builder: (context) => StudentsDetailPage(item)
+                    builder: (context) => StudentsDetailPage(item:item,onUpdate: (){
+                    },)
                 ),
               );
             },
@@ -67,7 +68,7 @@ class _SearchState extends State<SearchPage>{
       ),
     );
   }
-  void _SeatchStudentList(String v) async{
+  void _SearchStudentList(String v) async{
     var res = await http.get(Config.SERVER_SEARCHSTU+"?stu=$v");
     if(res.body!=null){
       listData.clear();

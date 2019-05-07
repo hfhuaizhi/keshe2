@@ -130,7 +130,6 @@ class _RegistState extends State<Regist>{
     String realname = _realNameController.text;
     var res = await http.get(Config.SERVER_REGIST+"?username=$username&password=$password&realname=$realname");
     String body = res.body;
-    body = "fail";
     if(body!=null&&body.contains("success")){
       showDialog<Null>(
         context: context,

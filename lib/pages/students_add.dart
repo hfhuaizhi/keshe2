@@ -16,7 +16,8 @@ class AddStudent extends StatefulWidget{
 
 }
 
-class _AddStudentState extends State<AddStudent>{
+class _AddStudentState extends State<AddStudent> with WidgetsBindingObserver{
+  AppLifecycleState _lastLifecyleState;
   TextEditingController _unameController = new TextEditingController();
   TextEditingController _pwdController = new TextEditingController();
   TextEditingController _realNameController = new TextEditingController();
@@ -25,7 +26,20 @@ class _AddStudentState extends State<AddStudent>{
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
   }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print("state is ::"+state.toString());
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +115,7 @@ class _AddStudentState extends State<AddStudent>{
                   }
               ),
               TextFormField(
-                  controller: _realNameController,
+                  controller: _clazzController,
                   decoration: InputDecoration(
                       labelText: "班级",
                       hintText: "班级",
@@ -111,7 +125,6 @@ class _AddStudentState extends State<AddStudent>{
                     return v
                         .trim()
                         .length > 1 ? null : "不能为空哦";
-
                   }
               ),
               // 登录按钮
@@ -146,9 +159,8 @@ class _AddStudentState extends State<AddStudent>{
     String password = _pwdController.text;
     String realname = _realNameController.text;
     String clazz = _clazzController.text;
-    var res = await http.get(Config.SERVER_REGIST+"?username=$username&password=$password&realname=$realname&class=$clazz");
+    var res = await http.get(Config.SERVER_ADDSTU+"?username=$username&password=$password&realname=$realname&class=$clazz");
     String body = res.body;
-    body = "fail";
     if(body!=null&&body.contains(Config.SUCCESS)){
       showDialog<Null>(
         context: context,

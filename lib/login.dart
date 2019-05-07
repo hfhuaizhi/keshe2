@@ -131,14 +131,13 @@ class _LoginState extends State<Login> {
     //return;
     if (body.isNotEmpty && body.contains("success")) {
       Fluttertoast.showToast(msg: "登录成功" + body);
-
+      Navigator.pushReplacementNamed(context, "app");
       setString(GlobalValue.USERNAME, username);
     } else {
       Fluttertoast.showToast(msg: "登录失败" + body);
       //todo 暂行进入主界面
     }
     //Navigator.of(context).pop();
-    Navigator.pushReplacementNamed(context, "app");
   }
 
   void _doRegist() {
@@ -150,11 +149,12 @@ class _LoginState extends State<Login> {
         .get(Config.SERVER_STULOGIN + "?username=$username&password=$password");
     if (res.body.contains("success")) {
       setString(GlobalValue.USERNAME, username);
+      Navigator.pushReplacementNamed(context, "stuapp");
+
     } else {
       Fluttertoast.showToast(msg: "学生登录失败");
     }
     //Navigator.pop(context);
-    Navigator.pushReplacementNamed(context, "stuapp");
   }
 }
 //嗯，这个的话，

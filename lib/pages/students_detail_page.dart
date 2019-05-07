@@ -5,10 +5,10 @@ import '../model/student.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:keshe2/conf/configure.dart';
-
 class StudentsDetailPage extends StatefulWidget{
   Student item;
-  StudentsDetailPage(this.item);
+  VoidCallback onUpdate;
+  StudentsDetailPage({this.item,this.onUpdate});
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -28,10 +28,10 @@ class _StudentsDetailPageState extends State<StudentsDetailPage>{
   void initState() {
     // TODO: implement initState
     super.initState();
-    _usernameCon.text = item.username;
-    _passwordCon.text = item.password;
-    _realnameCon.text = item.realname;
-    _clazzCon.text = item.clazz;
+    _usernameCon.text = item.s_username;
+    _passwordCon.text = item.s_password;
+    _realnameCon.text = item.s_realname;
+    _clazzCon.text = item.s_class;
   }
   @override
   Widget build(BuildContext context) {
@@ -46,6 +46,7 @@ class _StudentsDetailPageState extends State<StudentsDetailPage>{
             children: <Widget>[
                 TextField(
                   autofocus: canEdit,
+                  enabled: false,
                   controller: _usernameCon,
                   decoration: InputDecoration(
                       labelText: "用户名",
@@ -162,9 +163,10 @@ class _StudentsDetailPageState extends State<StudentsDetailPage>{
       Fluttertoast.showToast(msg: "输入不能为空");
       return;
     }
-    var res = await http.get(Config.SERVER_UPDATESTU+"?id=${item.id}&username=$username&password=$password&realname=$realname&clazz=$clazz");
+    var res = await http.get(Config.SERVER_UPDATESTU+"?id=${item.s_id}&username=$username&password=$password&realname=$realname&clazz=$clazz");
     if(res.body.contains(Config.SUCCESS)){
       setState(() {
+        widget.onUpdate();
         canEdit = false;
       });
     }else{
@@ -174,8 +176,9 @@ class _StudentsDetailPageState extends State<StudentsDetailPage>{
   }
 
   void deleteStu() async{
-    var res = await http.get(Config.SERVER_DELETESTU+"?id=${item.id}");
+    var res = await http.get(Config.SERVER_DELETESTU+"?id=${item.s_id}");
     if(res.body.contains(Config.SUCCESS)){
+      widget.onUpdate();
       Navigator.of(context).pop();
     }else{
       Fluttertoast.showToast(msg: "删除失败");

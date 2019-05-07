@@ -58,7 +58,6 @@ class AboutUsPageState extends State<AboutUsPage>{
                     title: Text("项目优势"),
                     content: Text("该项目具有如下优势：\n 客户端: \n1.客户端采用Flutter框架开发，可同时运行在Android和ios设备上，且界面显示完全一致\n"
                         "2.客户端动画简洁优雅，耳目一新\n"
-                        "服务端:\n1.服务端采用ssm框架，开发迅速"
                     ),
                     actions: <Widget>[
                       FlatButton(

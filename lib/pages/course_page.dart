@@ -36,7 +36,6 @@ class CoursePageState extends State<CoursePage>{
     }else{
       Fluttertoast.showToast(msg: "获取课程列表失败");
     }
-    list.add(new Course(name: "tmpname",time:"2050-06-03"));
     setState(() {
       listData.addAll(list);
     });

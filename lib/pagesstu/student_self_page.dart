@@ -146,7 +146,7 @@ class _StudentsSelfPageState extends State<StudentsSelfPage>{
       Fluttertoast.showToast(msg: "输入不能为空");
       return;
     }
-    var res = await http.get(Config.SERVER_UPDATESTU+"?id=${item.id}&username=$username&password=$password&realname=$realname&class=$clazz");
+    var res = await http.get(Config.SERVER_UPDATESTU+"?id=${item.s_id}&username=$username&password=$password&realname=$realname&class=$clazz");
     if(res.body.contains(Config.SUCCESS)){
       setState(() {
         canEdit = false;
@@ -158,7 +158,7 @@ class _StudentsSelfPageState extends State<StudentsSelfPage>{
   }
 
   void deleteStu() async{
-    var res = await http.get(Config.SERVER_DELETESTU+"?id=${item.id}");
+    var res = await http.get(Config.SERVER_DELETESTU+"?id=${item.s_id}");
     if(res.body.contains(Config.SUCCESS)){
       Navigator.of(context).pop();
     }else{
@@ -171,10 +171,10 @@ class _StudentsSelfPageState extends State<StudentsSelfPage>{
     var res =await http.get(Config.SERVER_GETSTUBYUSERNAME+"username=$username");
     if(res.body.isNotEmpty){
       item = json.decode(res.body);
-      _usernameCon.text = item.username;
-      _passwordCon.text = item.password;
-      _realnameCon.text = item.realname;
-      _clazzCon.text = item.clazz;
+      _usernameCon.text = item.s_username;
+      _passwordCon.text = item.s_password;
+      _realnameCon.text = item.s_realname;
+      _clazzCon.text = item.s_class;
     }else{
       Fluttertoast.showToast(msg: "获取数据失败");
     }

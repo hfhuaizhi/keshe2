@@ -24,11 +24,18 @@ class StudentPageState extends State<StudentPage> {
     if(data.body!=null){
       List<Student> list = new List();
       try{
-        list = json.decode(data.body);
+        List tmpList = json.decode(data.body);
+        tmpList.forEach((tmp){
+          list.add(Student.fromJson(tmp));
+        });
       }catch(e){
         print(e.toString());
       }
-      listData.addAll(list);
+      print(list.toString());
+      if(list!=null){
+        listData.clear();
+        listData.addAll(list);
+      }
       setState(() {
 
       });
@@ -52,9 +59,9 @@ class StudentPageState extends State<StudentPage> {
         scrollDirection: Axis.vertical,
         //分隔线构建器
         separatorBuilder: (BuildContext contex, int index) => Divider(
-              height: 1.0,
-              color: Colors.grey,
-            ),
+          height: 1.0,
+          color: Colors.grey,
+        ),
         itemCount: listData.length,
         //列表项构建器
         itemBuilder: (BuildContext contex, int index) {
@@ -62,8 +69,8 @@ class StudentPageState extends State<StudentPage> {
           Student item = listData[index];
 
           return ListTile(
-            title: Text(item.realname),
-            subtitle: Text(item.clazz),
+            title: Text(item.s_realname),
+            subtitle: Text(item.s_class),
             leading: Icon(Icons.accessibility_new),
             trailing: Icon(Icons.arrow_forward),
             contentPadding: EdgeInsets.all(10.0),
@@ -74,7 +81,9 @@ class StudentPageState extends State<StudentPage> {
                 context,
                 MaterialPageRoute(
                   //  builder: (context) => NewsDetailPage(item: item)),
-                    builder: (context) => StudentsDetailPage(item)
+                    builder: (context) => StudentsDetailPage(item:item,onUpdate: (){
+                      getStudentList();
+                    },)
                 ),
               );
             },
@@ -82,17 +91,18 @@ class StudentPageState extends State<StudentPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return AddStudent((){
-                setState(() {
-                  getStudentList();
-                });
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+            return AddStudent((){
+              setState(() {
+                print("onsuccess");
+                getStudentList();
               });
-            }));
-          },
+            });
+          }));
+        },
         child: Icon(Icons.add),
-          ),
+      ),
     );
   }
 }
