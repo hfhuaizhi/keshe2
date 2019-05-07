@@ -24,21 +24,23 @@ class CoursePageState extends State<CoursePage>{
     var data = await http.get(Config.SERVER_GETCOURSEBYTUSERNAME+"?username=$username");
     List<Course> list = new List();
     if(data.body!=null){
-
+        List tmpList;
       try{
-        list = json.decode(data.body);
+        tmpList = json.decode(data.body);
+        print(data.body);
+        tmpList.forEach((tmp){
+          list.add(Course.fromJson(tmp));
+        });
       }catch(e){
         print(e.toString());
       }
       setState(() {
+        listData.clear();
         listData.addAll(list);
       });
     }else{
       Fluttertoast.showToast(msg: "获取课程列表失败");
     }
-    setState(() {
-      listData.addAll(list);
-    });
   }
 
   @override
@@ -79,7 +81,9 @@ class CoursePageState extends State<CoursePage>{
                 context,
                 MaterialPageRoute(
                   //  builder: (context) => NewsDetailPage(item: item)),
-                    builder: (context) => CoursesDetailPage(item)
+                    builder: (context) => CoursesDetailPage(item:item,onUpdate: (){
+                      getCourseList();
+                    },)
                 ),
               );
             },

@@ -8,7 +8,7 @@ import 'stuapp.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
-  title: 'Flutter企业站实战',
+  title: 'hfhuaizhi的课设',
   //自定义主题
   theme: mDefaultTheme,
   //添加路由

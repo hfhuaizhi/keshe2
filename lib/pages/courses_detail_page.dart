@@ -12,7 +12,8 @@ import 'qrcode_page.dart';
 
 class CoursesDetailPage extends StatefulWidget{
   Course item;
-  CoursesDetailPage(this.item);
+  VoidCallback onUpdate;
+  CoursesDetailPage({this.item,this.onUpdate});
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -186,6 +187,7 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
     var res = await http.get(Config.SERVER_UPDATECOURSE+"?id=${item.id}&name=$name&time=$time");
     if(res.body.contains(Config.SUCCESS)){
       setState(() {
+        widget.onUpdate();
         canEdit = false;
       });
     }else{
@@ -197,6 +199,7 @@ class _CoursesDetailPageState extends State<CoursesDetailPage> with SingleTicker
   void deleteCourse() async{
     var res = await http.get(Config.SERVER_DELETECOURSE+"?id=${item.id}");
     if(res.body.contains(Config.SUCCESS)){
+      widget.onUpdate();
       Navigator.of(context).pop();
     }else{
       Fluttertoast.showToast(msg: "删除失败");
