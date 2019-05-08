@@ -6,10 +6,10 @@ class BannerWidget extends StatelessWidget{
 
   //图片路径
   List<String> banners = <String>[
-    'assets/images/banners/1.jpeg',
-    'assets/images/banners/2.jpeg',
-    'assets/images/banners/3.jpeg',
-    'assets/images/banners/4.jpeg',
+    '功能介绍',
+    '学生管理',
+    '考勤管理',
+    '作业管理',
   ];
 
   @override
@@ -27,11 +27,8 @@ class BannerWidget extends StatelessWidget{
           return Container(
             //图片左右内边距
             margin: EdgeInsets.only(left: 5, right: 5),
-            child: Image.asset(
-              banners[index],
-              width: width,
-              height: height,
-              fit: BoxFit.cover,
+            child: Center(
+              child: Text(banners[index]),
             ),
           );
         },

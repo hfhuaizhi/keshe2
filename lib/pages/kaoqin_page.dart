@@ -48,7 +48,7 @@ class _KaoqinState extends State<kaoqinPage>{
           return GestureDetector(
             child: ListTile(
             title: Text(item.sname),
-            subtitle: Text(item.state),
+            subtitle: Text(item.state.toString()),
             leading: Icon(Icons.location_on),
             trailing: RaisedButton(
                 child: Text("通过"),
@@ -120,18 +120,22 @@ class _KaoqinState extends State<kaoqinPage>{
   }
 
   void getAttendanceList() async{
+    print("id is "+item.id.toString());
     var res = await http.get(Config.SERVER_GETATTENDANCE+"?cid=${item.id}");
     if(res.body!=null){
       listData.clear();
       List<Attendance> list = new List();
       try{
-        list = json.decode(res.body);
+        List tmpList= json.decode(res.body);
+        tmpList.forEach((tmp){
+          list.add(Attendance.fromJson(tmp));
+        });
       }catch(e){
         print(e.toString());
       }
-      listData.addAll(list);
       setState(() {
-//
+        listData.clear();
+        listData.addAll(list);
       });
     }
   }
@@ -140,7 +144,7 @@ class _KaoqinState extends State<kaoqinPage>{
       var res = await http.get(Config.SERVER_UPDATEATTENDANCE+"?aid=${item.aid}&state=$state");
       if(res.body.contains(Config.SUCCESS)){
         setState(() {
-          item.state = state;
+          item.state = int.parse(state);
         });
       }else{
         Fluttertoast.showToast(msg: "考勤失败");

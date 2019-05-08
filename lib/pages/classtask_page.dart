@@ -31,13 +31,16 @@ class ClassTaskPageState extends State<ClassTaskPage> {
     if(data.body!=null){
       List<ClassTask> list = new List();
       try{
-        list = json.decode(data.body);
+        List tmpList = json.decode(data.body);
+        tmpList.forEach((tmp){
+          list.add(ClassTask.fromJson(tmp));
+        });
       }catch(e){
         print(e.toString());
       }
-      listData.addAll(list);
       setState(() {
-
+        listData.clear();
+        listData.addAll(list);
       });
     }else{
       Fluttertoast.showToast(msg: "获取作业列表失败");
@@ -55,7 +58,7 @@ class ClassTaskPageState extends State<ClassTaskPage> {
     return Scaffold(
       //带分隔线的List
       appBar: AppBar(
-        title: Text("${cItem.name}的作业"),
+        title: Text("作业-${cItem.name}"),
       ),
       body: ListView.separated(
         //排列方向 垂直和水平
@@ -169,8 +172,7 @@ class ClassTaskPageState extends State<ClassTaskPage> {
   }
 
   void addClassTask(String name, String content) async {
-    ClassTask tmp = ClassTask(name , content);
-    var res = await http.get(Config.SERVER_ADDCLASSTASK+"?name=$name&content=$content");
+    var res = await http.get(Config.SERVER_ADDCLASSTASK+"?name=$name&content=$content&cid=${cItem.id}");
     if(res.body!=null){
       if(res.body.contains(Config.SUCCESS)){
         setState(() {

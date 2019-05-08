@@ -123,17 +123,22 @@ class _ClassTaskListState extends State<ClassTaskListPage>{
   }
 
   void getClassTaskList() async{
-    var res = await http.get(Config.SERVER_GETATTENDANCE+"?cid=${item.id}");
+    print(item.id.toString());
+    var res = await http.get(Config.SERVER_SEARCHCLASSTASK+"?cid=${item.id}");
     if(res.body!=null){
       listData.clear();
       List<Doclasstask> list = new List();
       try{
-        list = json.decode(res.body);
+        List tmpList = json.decode(res.body);
+        tmpList.forEach((tmp){
+          list.add(Doclasstask.fromJson(tmp));
+        });
       }catch(e){
         print(e.toString());
       }
-      listData.addAll(list);
       setState(() {
+        listData.clear();
+        listData.addAll(list);
 //
       });
     }

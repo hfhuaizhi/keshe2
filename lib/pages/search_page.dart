@@ -71,14 +71,20 @@ class _SearchState extends State<SearchPage>{
   void _SearchStudentList(String v) async{
     var res = await http.get(Config.SERVER_SEARCHSTU+"?stu=$v");
     if(res.body!=null){
-      listData.clear();
       List<Student> list = new List();
       try{
-        list = json.decode(res.body);
+        List tmpList = json.decode(res.body);
+        tmpList.forEach((tmp){
+          list.add(Student.fromJson(tmp));
+        });
       }catch(e){
         print(e.toString());
       }
-      listData.addAll(list);
+      print(list.toString());
+      if(list!=null){
+        listData.clear();
+        listData.addAll(list);
+      }
       setState(() {
 
       });

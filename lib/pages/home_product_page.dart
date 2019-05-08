@@ -88,13 +88,6 @@ class HomeProductPage extends StatelessWidget{
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Container(
-          padding: EdgeInsets.only(left: 5,bottom: 10),
-          child: Text('最新产品', style: TextStyle(
-            fontSize: 16.0,
-            color: Color.fromRGBO(51, 51, 51, 1),
-          ),),
-        ),
         //流式布局列表
         Wrap(
           spacing: 2,

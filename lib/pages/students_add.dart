@@ -15,9 +15,7 @@ class AddStudent extends StatefulWidget{
   }
 
 }
-
 class _AddStudentState extends State<AddStudent> with WidgetsBindingObserver{
-  AppLifecycleState _lastLifecyleState;
   TextEditingController _unameController = new TextEditingController();
   TextEditingController _pwdController = new TextEditingController();
   TextEditingController _realNameController = new TextEditingController();
