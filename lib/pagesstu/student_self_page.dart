@@ -175,6 +175,9 @@ class _StudentsSelfPageState extends State<StudentsSelfPage>{
       _passwordCon.text = item.s_password;
       _realnameCon.text = item.s_realname;
       _clazzCon.text = item.s_class;
+      setState(() {
+
+      });
     }else{
       Fluttertoast.showToast(msg: "获取数据失败");
     }

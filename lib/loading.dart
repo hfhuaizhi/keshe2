@@ -19,7 +19,14 @@ class _LoadingState extends State<LoadingPage>{
       Future<String> username =  getString(GlobalValue.USERNAME);
       username.then((String tmp){
         if(tmp!=null&&tmp.length>1){
-          _gotoMainPager(context);
+          Future<String> tag =  getString(GlobalValue.USERTAG);
+          tag.then((tagstr){
+            if(tagstr==GlobalValue.USERTAG){
+            _gotoMainPager(context);
+          }else{
+             _gotoStuPager(context);
+            }
+          });
         }else{
           _godoLogin(context);
         }
@@ -55,6 +62,10 @@ class _LoadingState extends State<LoadingPage>{
       ),
     );
     
+  }
+
+  void _gotoStuPager(BuildContext context) {
+    Navigator.of(context).pushReplacementNamed("stuapp");
   }
   
 }

@@ -101,7 +101,7 @@ class ClassTaskPageState extends State<ClassTaskPage> {
             child:ListTile(
               title: Text(item.name),
               subtitle: Text(item.content),
-              leading: Icon(Icons.fiber_new),
+              leading: Text(item.id.toString()),
               trailing: Icon(Icons.arrow_forward),
               contentPadding: EdgeInsets.all(10.0),
               enabled: true,

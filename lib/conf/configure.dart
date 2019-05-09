@@ -24,6 +24,7 @@ class Config{
   static const String SERVER_DOMYCLASSTASK = SERVER_ADDRESS+"/domyclasstask";
   static const String SERVER_DELETEMYCLASSTASK = SERVER_ADDRESS+"/deletemyclasstask";
   static const String SERVER_UPDATEMYCLASSTASK = SERVER_ADDRESS+"/updatemyclasstask";
+  static const String SERVER_GETDCLBYCLID = SERVER_ADDRESS+"/getdclbyclid";
 
   static const String SERVER_ADDCOURSE = SERVER_ADDRESS+"/addcourse";
   static const String SERVER_DELETECOURSE = SERVER_ADDRESS+"/deletecourse";

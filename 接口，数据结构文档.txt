@@ -92,6 +92,10 @@ res:success/error
 /updatemyclasstask
 req:dcid state
 res:success/error
+查看当前课程下提交的课程
+/getdclbyclid
+req: clid
+res[doclasstask]
 -------
 ----------------
 增加课程

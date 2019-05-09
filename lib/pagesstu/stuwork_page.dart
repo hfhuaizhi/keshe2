@@ -126,7 +126,7 @@ class _StuwordPageState extends State<StuwordPage>{
   void jiaozuoye() async{
     String id = _idCon.text;
     String username = await getString(GlobalValue.USERNAME);
-    var res = await http.get(Config.SERVER_ADDCLASSTASK+"?clid=$id&username=$username");
+    var res = await http.get(Config.SERVER_DOMYCLASSTASK+"?clid=$id&username=$username");
     if(res.body.isNotEmpty&&res.body.contains(Config.SUCCESS)){
       Fluttertoast.showToast(msg: "作业提交成功");
     }else{

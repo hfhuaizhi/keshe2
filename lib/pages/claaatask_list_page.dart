@@ -49,7 +49,7 @@ class _ClassTaskListState extends State<ClassTaskListPage>{
             child: ListTile(
             title: Text(item.sname),
             subtitle: Text(item.state.toString()),
-            leading: Icon(Icons.fiber_new),
+            leading: Icon(Icons.assignment),
             trailing: Offstage(
               offstage: item.state>0?true:false,
               child:RaisedButton(
@@ -124,7 +124,7 @@ class _ClassTaskListState extends State<ClassTaskListPage>{
 
   void getClassTaskList() async{
     print(item.id.toString());
-    var res = await http.get(Config.SERVER_SEARCHCLASSTASK+"?cid=${item.id}");
+    var res = await http.get(Config.SERVER_GETDCLBYCLID+"?clid=${item.id}");
     if(res.body!=null){
       listData.clear();
       List<Doclasstask> list = new List();
@@ -139,13 +139,12 @@ class _ClassTaskListState extends State<ClassTaskListPage>{
       setState(() {
         listData.clear();
         listData.addAll(list);
-//
       });
     }
   }
 
   void updateAttendance(Doclasstask item,String state) async{
-      var res = await http.get(Config.SERVER_UPDATECLASSTASK+"?dcid=${item.dcid}&state=$state");
+      var res = await http.get(Config.SERVER_UPDATEMYCLASSTASK+"?dcid=${item.dcid}&state=$state");
       if(res.body.contains(Config.SUCCESS)){
         setState(() {
           item.state = int.parse(state);
@@ -154,6 +153,5 @@ class _ClassTaskListState extends State<ClassTaskListPage>{
         Fluttertoast.showToast(msg: "批改作业失败");
       }
   }
-
 }
 

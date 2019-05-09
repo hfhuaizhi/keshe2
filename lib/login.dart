@@ -133,6 +133,7 @@ class _LoginState extends State<Login> {
       Fluttertoast.showToast(msg: "登录成功" + body);
       Navigator.pushReplacementNamed(context, "app");
       setString(GlobalValue.USERNAME, username);
+      setString(GlobalValue.USERTAG, GlobalValue.TEACHERTAG);
     } else {
       Fluttertoast.showToast(msg: "登录失败" + body);
       //todo 暂行进入主界面
@@ -149,6 +150,7 @@ class _LoginState extends State<Login> {
         .get(Config.SERVER_STULOGIN + "?username=$username&password=$password");
     if (res.body.contains("success")) {
       setString(GlobalValue.USERNAME, username);
+      setString(GlobalValue.USERTAG, GlobalValue.STUTAG);
       Navigator.pushReplacementNamed(context, "stuapp");
 
     } else {
