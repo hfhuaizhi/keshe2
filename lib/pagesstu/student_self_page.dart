@@ -168,9 +168,10 @@ class _StudentsSelfPageState extends State<StudentsSelfPage>{
 
   void getStudentItemByUsername() async{
     String username = await getString(GlobalValue.USERNAME);
-    var res =await http.get(Config.SERVER_GETSTUBYUSERNAME+"username=$username");
+    var res =await http.get(Config.SERVER_GETSTUBYUSERNAME+"?username=$username");
     if(res.body.isNotEmpty){
-      item = json.decode(res.body);
+      Map map = json.decode(res.body);
+      item = Student.fromJson(map);
       _usernameCon.text = item.s_username;
       _passwordCon.text = item.s_password;
       _realnameCon.text = item.s_realname;

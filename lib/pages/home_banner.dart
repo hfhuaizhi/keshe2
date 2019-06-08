@@ -28,7 +28,7 @@ class BannerWidget extends StatelessWidget{
             //图片左右内边距
             margin: EdgeInsets.only(left: 5, right: 5),
             child: Center(
-              child: Text(banners[index]),
+              child: Image.asset("assets/images/banners/1.jpeg"),
             ),
           );
         },

@@ -1,6 +1,6 @@
 class Config{
 
-  static const String IP = '10.60.118.133';
+  static const String IP = '192.168.43.170';
   static const String PORT = '8080';
   static const String APPNAME = '/keshe';
   static const String SERVER_ADDRESS = "http://"+IP+":"+PORT+APPNAME;

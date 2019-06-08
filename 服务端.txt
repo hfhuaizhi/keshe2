@@ -21,6 +21,7 @@ c_name varchar15 notnull
 //,;.;,.c_time_start varchar20 notnull
 //c_time_end varchar20 notnull
 c_time varchar20 notnull
+t_username varchar20 notnull
 ----
 classtask
 ct_id int key notnull

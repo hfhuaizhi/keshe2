@@ -21,7 +21,7 @@ class _LoadingState extends State<LoadingPage>{
         if(tmp!=null&&tmp.length>1){
           Future<String> tag =  getString(GlobalValue.USERTAG);
           tag.then((tagstr){
-            if(tagstr==GlobalValue.USERTAG){
+            if(tagstr==GlobalValue.TEACHERTAG){
             _gotoMainPager(context);
           }else{
              _gotoStuPager(context);
