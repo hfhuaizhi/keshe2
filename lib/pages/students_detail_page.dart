@@ -11,7 +11,6 @@ class StudentsDetailPage extends StatefulWidget{
   StudentsDetailPage({this.item,this.onUpdate});
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _StudentsDetailPageState(item);
   }
 
@@ -35,7 +34,6 @@ class _StudentsDetailPageState extends State<StudentsDetailPage>{
   }
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text("学生信息详情"),
@@ -184,5 +182,4 @@ class _StudentsDetailPageState extends State<StudentsDetailPage>{
       Fluttertoast.showToast(msg: "删除失败");
     }
   }
-
 }

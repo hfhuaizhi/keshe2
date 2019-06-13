@@ -1,6 +1,6 @@
 class Config{
 
-  static const String IP = '192.168.43.170';
+  static const String IP = '10.167.138.24';
   static const String PORT = '8080';
   static const String APPNAME = '/keshe';
   static const String SERVER_ADDRESS = "http://"+IP+":"+PORT+APPNAME;
@@ -25,6 +25,7 @@ class Config{
   static const String SERVER_DELETEMYCLASSTASK = SERVER_ADDRESS+"/deletemyclasstask";
   static const String SERVER_UPDATEMYCLASSTASK = SERVER_ADDRESS+"/updatemyclasstask";
   static const String SERVER_GETDCLBYCLID = SERVER_ADDRESS+"/getdclbyclid";
+  static const String SERVER_GETCOURSEBYSTU = SERVER_ADDRESS+"/getcoursebystu";
 
   static const String SERVER_ADDCOURSE = SERVER_ADDRESS+"/addcourse";
   static const String SERVER_DELETECOURSE = SERVER_ADDRESS+"/deletecourse";

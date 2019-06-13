@@ -5,6 +5,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:keshe2/conf/configure.dart';
 import 'package:keshe2/conf/GlobalValue.dart';
+import 'package:keshe2/model/course.dart';
+import 'package:keshe2/pages/about_contact_page.dart';
+import 'package:keshe2/pages/about_us_page.dart';
+import 'package:keshe2/pages/kaoqin_page.dart';
+import 'package:keshe2/pagesstu/page_course_stu.dart';
 import 'package:keshe2/utils/SpUtil.dart';
 class StuwordPage extends StatefulWidget {
   @override
@@ -34,6 +39,7 @@ class _StuwordPageState extends State<StuwordPage>{
               width: 100,
               height: 100,
               child: FloatingActionButton(
+                heroTag: "btn1",
                 child: Text("签到"),
                 onPressed: scan,
               ),
@@ -44,40 +50,13 @@ class _StuwordPageState extends State<StuwordPage>{
             Container(
               width: 100,
               height: 100,
-              child: FloatingActionButton(
-                child: Text("交作业"),
-                onPressed: () {
-                  showDialog(context: context,builder: (context){
-                    return AlertDialog(
-                      title: Text("交作业"),
-                      content: TextField(
-                        controller: _idCon,
-                        decoration: InputDecoration(
-                          labelText: "作业id",
-                          hintText: "作业id",
-                        ),
-                      ),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text("取消"),
-                          onPressed: (){Navigator.of(context).pop();},
-                        ),
-                        FlatButton(
-                          child: Text("确定"),
-                          onPressed: (){
-                            Navigator.of(context).pop();
-                           // deleteStu();
-                            if(_idCon.text.isNotEmpty){
-                              jiaozuoye();
-                            }else{
-                              Fluttertoast.showToast(msg: "id不能为空");
-                            }
-
-                          },
-                        ),
-                      ],
-                    );
-                  });
+              child: GestureDetector(
+                child: FloatingActionButton(
+                  heroTag: "btn2",
+                  child: Text("交作业"),
+                ),
+                onTap: (){
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => PageCourseStu()));
                 },
               ),
             ),
@@ -123,14 +102,4 @@ class _StuwordPageState extends State<StuwordPage>{
 
   }
 
-  void jiaozuoye() async{
-    String id = _idCon.text;
-    String username = await getString(GlobalValue.USERNAME);
-    var res = await http.get(Config.SERVER_DOMYCLASSTASK+"?clid=$id&username=$username");
-    if(res.body.isNotEmpty&&res.body.contains(Config.SUCCESS)){
-      Fluttertoast.showToast(msg: "作业提交成功");
-    }else{
-      Fluttertoast.showToast(msg: "作业提交失败");
-    }
-  }
 }

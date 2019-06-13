@@ -136,6 +136,13 @@ res:success/error
 /deletecomment//删除评语
 req:coid
 res:success/error
+-------------------------
+/getcoursebystu //获取某学生签过到的课程
+req:username
+res:[course,course]
+/getattendancebystu //获取某学生签过的到
+req:username
+res:[course,course]
 ----------------
 Student{
 	id

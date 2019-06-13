@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:keshe2/model/ClassTask.dart';
+import 'package:keshe2/pagesstu/claaatask_list_page_stu.dart';
+import 'package:keshe2/pagesstu/page_kaoqin_stu.dart';
 import '../model/news.dart';
 import '../model/student.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -113,28 +115,30 @@ class _StudentsSelfPageState extends State<StudentsSelfPage>{
               Padding(
                 padding: EdgeInsets.only(top: 20),
               ),
-//              Row(
-//                mainAxisSize: MainAxisSize.min,
-//                children: <Widget>[
-//                  RaisedButton(
-//                    child: Text("查看签到"),
-//                    onPressed: (){
-//                      updateStudent();
-//                    },
-//                  ),
-//                  Padding(padding: EdgeInsets.only(left: 20,right: 20),),
-//                  RaisedButton(
-//                    child: Text("查看作业"),
-//                    onPressed: (){
-//                      updateStudent();
-//                    },
-//                  ),
-//                ],
-//              )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  RaisedButton(
+                    child: Text("我的签到"),
+                    onPressed: (){
+                      showMyQiandao();
+                    },
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15,right: 15),
+                  ),
+                  RaisedButton(
+                    child: Text("我的作业"),
+                    onPressed: (){
+                      showMyZuoye();
+                    },
+                  )
+                ],
+              )
             ],
           )
       ),
-    );;
+    );
   }
 
   void updateStudent() async{
@@ -146,7 +150,7 @@ class _StudentsSelfPageState extends State<StudentsSelfPage>{
       Fluttertoast.showToast(msg: "输入不能为空");
       return;
     }
-    var res = await http.get(Config.SERVER_UPDATESTU+"?id=${item.s_id}&username=$username&password=$password&realname=$realname&class=$clazz");
+    var res = await http.get(Config.SERVER_UPDATESTU+"?id=${item.s_id}&username=$username&password=$password&realname=$realname&clazz=$clazz");
     if(res.body.contains(Config.SUCCESS)){
       setState(() {
         canEdit = false;
@@ -177,11 +181,18 @@ class _StudentsSelfPageState extends State<StudentsSelfPage>{
       _realnameCon.text = item.s_realname;
       _clazzCon.text = item.s_class;
       setState(() {
-
       });
     }else{
       Fluttertoast.showToast(msg: "获取数据失败");
     }
+  }
+
+  void showMyQiandao() {
+    Navigator.push(context,MaterialPageRoute(builder: (context) => kaoqinStuPage()));
+  }
+
+  void showMyZuoye() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ClassTaskListPageStu()));
   }
 
 }

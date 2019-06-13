@@ -49,7 +49,7 @@ class _LoadingState extends State<LoadingPage>{
 
             Center(
               child: Text(
-                'Flutterkeshe2',
+                '基于安卓平台的\n培训管理系统',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 36.0,
